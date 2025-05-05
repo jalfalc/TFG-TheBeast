@@ -12,8 +12,8 @@ if(!empty($_GET['controlador'])){
 
 }
 
-if (file_exists("Controlador/" . $controlador . "_Controlador.php")){
-    require_once ("Controlador/" . $controlador . "_Controlador.php");
+if (file_exists("Controller/" . $controlador . "_Controller.php")){
+    require_once ("Controller/" . $controlador . "_Controller.php");
 }else{
     echo "Error, el controlador requerido no existe o no se encuentra";
 }
