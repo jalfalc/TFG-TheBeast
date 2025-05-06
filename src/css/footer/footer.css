@@ -1,0 +1,13 @@
+@import "../colors.css";
+
+footer {
+  background-color: var(--bck);
+  color: var(--bg);
+  text-align: center;
+  padding: 1rem;
+}
+
+footer p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+}
