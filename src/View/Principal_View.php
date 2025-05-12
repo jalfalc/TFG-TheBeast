@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Beast Barber</title>
+  <title>The Beast Barber - Inicio</title>
   <link rel="stylesheet" href="css/header/header.css">
   <link rel="stylesheet" href="css/principal/principal.css">
   <link rel="stylesheet" href="css/footer/footer.css">
@@ -53,6 +53,6 @@
   </section>
   <?php include 'Footer/Footer_View.php';?>
   
-  <script src="js/principal/carousel.js"></script>
+  <script src="js/principal/principal.js"></script>
 </body>
 </html>

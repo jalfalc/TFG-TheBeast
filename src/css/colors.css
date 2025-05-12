@@ -1,9 +1,8 @@
 :root {
-    --primary: #EF8354;       /* Naranja suave */
-    --secondary: #2D3142;     /* Gris oscuro */
-    --accent: #FCD581;        /* Amarillo claro */
-    --bg: #F9F7F7;            /* Blanco humo */
-    --text: #2D3142;
-    --bck: black;          /* Texto principal */
-  }
-  
+  --primary: #00897B;       /* Verde azulado profundo */
+  --secondary: #1A535C;     /* Verde azulado oscuro */
+  --accent: #FFB400;        /* Amarillo ámbar */
+  --bg: #F5F5F5;            /* Gris muy claro */
+  --text: #263238;          /* Azul grisáceo oscuro para texto */
+  --bck: #0D2B32;           /* Fondo oscuro para el logo blanco */
+}

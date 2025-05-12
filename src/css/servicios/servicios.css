@@ -5,9 +5,214 @@
     padding: 0;
     box-sizing: border-box;
   }
-  body {
-    font-family: Arial, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
+
+body {
+  background-color: var(--bck);
+  color: var(--bg);
+  line-height: 1.5;
+}
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hero-title {
+  color: #d4af37;
+  font-size: 72px;
+  margin-bottom: 32px;
+}
+
+/* Titulo */
+.titulo {
+  background-color: #000;
+  padding: 40px 0;
+  text-align: center;
+}
+.titulo h1{
+  color: var(--bg);
+  font-size: 3rem;
+  font-style: italic;
+}
+.titulo button {
+  background-color: var(--primary);
+  color: var(--bg);
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 3.125rem; /* 50px */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 1rem;
+}
+.titulo button:hover {
+  background-color: var(--accent);
+  transform: scale(1.05);
+}
+
+/* Servicios */
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  padding: 1rem 1rem;
+  background-color: black;
+}
+.servicio-card {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 1%;
+  padding: 24px;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: auto;
+  max-height: 1000px;
+}
+.servicio-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-5px);
+}
+.servicio-img-container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.servicio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  max-height: 750px; /* Para ajustar las imágenes y que todas tengan el mismo tamaño y no perder la forma del contenedor*/
+}
+.servicio-card:hover .servicio-img {
+  transform: scale(1.05);
+}
+.servicio-title {
+  color: #d4af37;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+.servicio-desc {
+  color: #ccc;
+  margin-bottom: 16px;
+}
+.servicio-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.servicio-precio {
+  color: #d4af37;
+  font-weight: bold;
+  font-size: 20px;
+}
+.servicio-btn {
+  background-color: #0a4a4a;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  border: 1px solid #d4af37;
+  transition: background-color 0.3s ease;
+}
+.servicio-btn:hover {
+  background-color: #0c5d5d;
+}
+
+/* Testimonios */
+.testimonios-section {
+  background-color: #0a4a4a;
+  padding: 64px 0;
+}
+.section-title {
+  color: #d4af37;
+  font-size: 60px;
+  text-align: center;
+  margin-bottom: 48px;
+}
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.testimonio-card {
+  background-color: #000;
+  padding: 24px;
+  border-radius: 8px;
+}
+.testimonio-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.testimonio-img-container {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+}
+.testimonio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.testimonio-info h3 {
+  color: #fff;
+}
+.testimonio-stars {
+  color: #d4af37;
+}
+.testimonio-text {
+  color: #ccc;
+  font-style: italic;
+}
+
+/* CTA */
+.cta-section {
+  background-color: #000;
+  padding: 64px 0;
+  text-align: center;
+}
+.cta-title {
+  color: #d4af37;
+  font-size: 60px;
+  margin-bottom: 24px;
+}
+.cta-text {
+  color: #ccc;
+  font-size: 18px;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Media Queries Móvil */
+@media (max-width: 768px) {
+  .servicios-grid,
+  .testimonios-grid {
+    grid-template-columns: 1fr;
+    max-height: 10rem;
   }
+  .hero-title,
+  .tagline-text,
+  .section-title,
+  .cta-title {
+    font-size: 42px;
+  }
+}
