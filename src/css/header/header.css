@@ -30,6 +30,23 @@ nav.menu-container a:hover {
   color: var(--accent);
 }
 
+#login {
+  color: greenyellow;
+}
+#login:hover {
+  color: var(--accent);
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
+#logout {
+  color: red;
+}
+#logout:hover {
+  color: var(--accent);
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
+
 /* Responsive móvil para header */
 @media (max-width: 30rem) { /* 480px */
   header {
