@@ -14,10 +14,10 @@
         <div class="background-overlay">
             <div class="login-container">
                 <h2>Iniciar Sesión</h2>
-                <form action="authenticate.php" method="post">
+                <form action="index.php?controlador=Verify" method="post">
                     <div class="form-group">
-                        <label for="username">Usuario:</label>
-                        <input type="text" id="username" name="username" required>
+                        <label for="username">Correo electrónico:</label>
+                        <input type="text" id="username" name="mail" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña:</label>
@@ -30,5 +30,7 @@
         </div>
     </div>
     <?php include 'Footer/Footer_View.php';?>
+
+    <script src="js/header.js"></script>
 </body>
 </html>

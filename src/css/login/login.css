@@ -7,7 +7,8 @@
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* altura mínima para ocupar toda la pantalla */
+  min-height: 100vh; /* altura mínima para ocupar toda la pantalla */;
+  font-family: Arial, sans-serif;
 }
 #content-login {
   flex: 1;
@@ -37,7 +38,7 @@ background-size: cover;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin: 1rem;
 }
 
 .form-group label {

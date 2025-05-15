@@ -3,30 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Beast Barber - Servicios</title>
+  <title>The Beast Barber – Servicios</title>
+  <!-- Estilos de la cabecera -->
   <link rel="stylesheet" href="css/header/header.css">
+  <!-- Estilos de la sección de servicios y testimonios -->
   <link rel="stylesheet" href="css/servicios/servicios.css">
+  <!-- Estilos del pie de página -->
   <link rel="stylesheet" href="css/footer/footer.css">
 </head>
 <body>
-    <?php include 'Header/Header_View.php';?>
-    <div class="cta-section">
-        <div class="container">
-            <h2 class="cta-title">¿Listo para lucir tu mejor versión?</h2>
-            <p class="cta-text">Reserva tu cita hoy y experimenta el servicio premium que mereces.</p>
-            <a href="reservas.html" class="btn btn-gold">RESERVAR AHORA</a>
-        </div>
+  <!-- ============================
+       CABECERA
+       ============================ -->
+  <?php include 'Header/Header_View.php'; ?>
+
+  <!-- ============================
+       SECCIÓN: LLAMADA A LA ACCIÓN
+       ============================ -->
+  <div class="seccion-llamada-accion">
+    <div class="contenedor-llamada-accion">
+      <!-- Título principal -->
+      <h2 class="titulo-llamada-accion">
+        ¿Listo para lucir tu mejor versión?
+      </h2>
+      <!-- Texto descriptivo -->
+      <p class="texto-llamada-accion">
+        Reserva tu cita hoy y experimenta el servicio premium que mereces.
+      </p>
+      <!-- Botón de reserva -->
+      <a href="reservas.html" class="boton-reservar-accion">
+        RESERVAR AHORA
+      </a>
     </div>
+  </div>
 
-    <!-- Servicios -->
-    <div class="container">
-        <div class="servicios-grid">
-            <!-- Los servicios se generarán con JavaScript -->
-        </div>
+  <!-- ============================
+       SECCIÓN: SERVICIOS
+       ============================ -->
+  <div class="seccion-servicios">
+    <div class="contenedor-servicios">
+      <!-- Aquí se inyectan dinámicamente las tarjetas de servicio -->
+      <div class="grid-servicios"></div>
     </div>
+  </div>
 
-    <?php include 'Footer/Footer_View.php';?>
+  <!-- ============================
+       SECCIÓN: TESTIMONIOS
+       ============================ -->
+  <div class="seccion-testimonios">
+    <div class="contenedor-testimonios">
+      <!-- Título de la sección de testimonios -->
+      <h2 class="titulo-testimonios">Testimonios</h2>
+      <!-- Aquí se inyectan dinámicamente las tarjetas de testimonio -->
+      <div class="grid-testimonios"></div>
+    </div>
+  </div>
 
-    <script src="js/servicios/servicios.js"></script>
+  <!-- ============================
+       PIE DE PÁGINA
+       ============================ -->
+  <?php include 'Footer/Footer_View.php'; ?>
+
+  <!-- ============================
+       MODAL: Información de Servicio
+       ============================ -->
+  <div id="modal-informacion-servicio" class="modal-informacion" role="dialog">
+    <div class="contenido-modal-informacion">
+      <!-- Botón para cerrar el modal -->
+      <button id="boton-cerrar-modal" class="boton-cerrar-modal" aria-label="Cerrar">
+        &times;
+      </button>
+      <!-- Campos que se rellenan desde JavaScript -->
+      <h2 id="titulo-modal"></h2>
+      <p id="descripcion-modal"></p>
+      <p>
+        <strong>Duración:</strong>
+        <span id="duracion-modal"></span>
+      </p>
+      <p>
+        <strong>Incluye:</strong>
+        <span id="incluye-modal"></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ============================
+       Scripts
+       ============================ -->
+  <!-- Funcionalidad para generar las tarjetas y gestionar el modal -->
+   <script src="js/header.js"></script>
+  <script src="js/servicios/servicios.js"></script>
 </body>
 </html>

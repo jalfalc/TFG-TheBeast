@@ -1,218 +1,265 @@
 @import "../colors.css";
 
+/* =========================================================
+Reset y estilos globales
+========================================================= */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 body {
-  background-color: var(--bck);
-  color: var(--bg);
-  line-height: 1.5;
-}
-/* Hero Section */
-.hero {
-  position: relative;
-  height: 600px;
-  overflow: hidden;
-}
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.hero-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.hero-title {
-  color: #d4af37;
-  font-size: 72px;
-  margin-bottom: 32px;
+background-color: var(--bck);
+color: var(--bg);
+line-height: 1.5;
+font-family: Arial, sans-serif;
 }
 
-/* Titulo */
-.titulo {
-  background-color: #000;
-  padding: 40px 0;
-  text-align: center;
+/* =========================================================
+Sección: Llamada a la Acción (CTA)
+========================================================= */
+.seccion-llamada-accion {
+background-color: #000;
+padding: 3rem 1rem;
+text-align: center;
 }
-.titulo h1{
-  color: var(--bg);
-  font-size: 3rem;
-  font-style: italic;
+.contenedor-llamada-accion {
+max-width: 90vw;
+margin: 0 auto;
 }
-.titulo button {
-  background-color: var(--primary);
-  color: var(--bg);
-  font-size: 1rem;
-  padding: 0.75rem 2rem;
-  border: none;
-  border-radius: 3.125rem; /* 50px */
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  margin-top: 1rem;
+.titulo-llamada-accion {
+color: #d4af37;
+font-size: 2.5rem;
+margin-bottom: 1rem;
 }
-.titulo button:hover {
-  background-color: var(--accent);
-  transform: scale(1.05);
+.texto-llamada-accion {
+color: #ccc;
+font-size: 1.125rem;
+margin-bottom: 2rem;
+}
+.boton-reservar-accion {
+display: inline-block;
+background-color: #d4af37;
+color: #000;
+padding: 0.75rem 2rem;
+border: none;
+border-radius: 0.5rem;
+font-size: 1rem;
+text-decoration: none;
+transition: background-color 0.3s ease;
+}
+.boton-reservar-accion:hover {
+background-color: #b38e2e;
 }
 
-/* Servicios */
-.servicios-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
-  padding: 1rem 1rem;
-  background-color: black;
+/* =========================================================
+Sección: Servicios
+========================================================= */
+.seccion-servicios {
+background-color: #000;
+padding: 5vh 0;
+}
+.contenedor-servicios {
+max-width: 90vw;
+margin: 0 auto;
+padding: 0;
+}
+.grid-servicios {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2vw;
 }
 .servicio-card {
-  background-color: #111;
-  border: 1px solid #333;
-  border-radius: 1%;
-  padding: 24px;
-  transition: all 0.3s ease;
-  width: 100%;
-  height: auto;
-  max-height: 1000px;
+background-color: #111;
+border: 0.0625rem solid #333;
+border-radius: 0.5rem;
+display: flex;
+flex-direction: column;
+overflow: hidden;
+transition: transform 0.3s ease, border-color 0.3s ease;
+min-height: 60vh;
 }
 .servicio-card:hover {
-  border-color: #d4af37;
-  transform: translateY(-5px);
+border-color: #d4af37;
+transform: translateY(-0.3125rem);
 }
 .servicio-img-container {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  border-radius: 4px;
-  margin-bottom: 16px;
+width: 100%;
+height: 40vh;
+overflow: hidden;
 }
 .servicio-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  max-height: 750px; /* Para ajustar las imágenes y que todas tengan el mismo tamaño y no perder la forma del contenedor*/
+width: 100%;
+height: 100%;
+object-fit: contain;
+background-color: #000;
+transition: transform 0.5s ease;
 }
 .servicio-card:hover .servicio-img {
-  transform: scale(1.05);
+transform: scale(1.1);
 }
 .servicio-title {
-  color: #d4af37;
-  font-size: 24px;
-  margin-bottom: 8px;
+color: #d4af37;
+font-size: 1.75rem;
+margin: 1rem;
 }
 .servicio-desc {
-  color: #ccc;
-  margin-bottom: 16px;
+color: #ccc;
+margin: 0 1rem 1rem;
+flex: 1;
 }
 .servicio-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem;
 }
 .servicio-precio {
-  color: #d4af37;
-  font-weight: bold;
-  font-size: 20px;
+color: #d4af37;
+font-weight: bold;
+font-size: 1.25rem;
 }
-.servicio-btn {
-  background-color: #0a4a4a;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-size: 14px;
-  border: 1px solid #d4af37;
-  transition: background-color 0.3s ease;
+.servicio-info-btn {
+background: transparent;
+border: 0.0625rem solid #d4af37;
+color: var(--bg);
+padding: 0.5rem 1rem;
+border-radius: 0.25rem;
+font-size: 1rem;
+cursor: pointer;
+transition: background-color 0.3s ease, color 0.3s ease;
 }
-.servicio-btn:hover {
-  background-color: #0c5d5d;
+.servicio-info-btn:hover {
+background: #d4af37;
+color: #000;
 }
 
-/* Testimonios */
-.testimonios-section {
-  background-color: #0a4a4a;
-  padding: 64px 0;
+/* =========================================================
+Sección: Testimonios
+========================================================= */
+.seccion-testimonios {
+background-color: #0a4a4a;
+padding: 4rem 0;
 }
-.section-title {
-  color: #d4af37;
-  font-size: 60px;
-  text-align: center;
-  margin-bottom: 48px;
+.contenedor-testimonios {
+max-width: 90vw;
+margin: 0 auto;
 }
-.testimonios-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+.titulo-testimonios {
+color: #ccc;
+font-size: 2.5rem;
+text-align: center;
+margin-bottom: 2rem;
+}
+.grid-testimonios {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+gap: 2rem;
+padding: 0 1rem;
 }
 .testimonio-card {
-  background-color: #000;
-  padding: 24px;
-  border-radius: 8px;
+background: #000;
+padding: 1.5rem;
+border-radius: 0.5rem;
+display: flex;
+flex-direction: column;
+}
+.testimonio-card:hover {
+border: 1px solid #d4af37;
+transform: scale(1.1);
 }
 .testimonio-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
+display: flex;
+align-items: center;
+margin-bottom: 1rem;
 }
 .testimonio-img-container {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 16px;
+width: 5rem;
+height: 5rem;
+border-radius: 50%;
+overflow: hidden;
+flex-shrink: 0;
+margin-right: 1rem;
 }
 .testimonio-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+width: 100%;
+height: 100%;
+object-fit: cover;
 }
 .testimonio-info h3 {
-  color: #fff;
+color: #fff;
+margin: 0;
+font-size: 1.25rem;
 }
 .testimonio-stars {
-  color: #d4af37;
+color: #d4af37;
+margin-top: 0.25rem;
 }
 .testimonio-text {
-  color: #ccc;
-  font-style: italic;
+color: #ccc;
+font-style: italic;
+margin-top: auto;
 }
 
-/* CTA */
-.cta-section {
-  background-color: #000;
-  padding: 64px 0;
-  text-align: center;
+/* =========================================================
+Modal: información de servicio
+========================================================= */
+.modal-informacion {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(0, 0, 0, 0.6);
+display: none;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+z-index: 1000;
 }
-.cta-title {
-  color: #d4af37;
-  font-size: 60px;
-  margin-bottom: 24px;
+.modal-informacion.open {
+display: flex;
 }
-.cta-text {
-  color: #ccc;
-  font-size: 18px;
-  margin-bottom: 32px;
-  max-width: 600px;
-  margin: 0 auto;
+.contenido-modal-informacion {
+background: #111;
+border-radius: 0.5rem;
+padding: 2rem;
+max-width: 80vw;
+max-height: 80vh;
+overflow-y: auto;
+position: relative;
+}
+.boton-cerrar-modal {
+position: absolute;
+top: 1rem;
+right: 1rem;
+background: transparent;
+border: none;
+font-size: 1.5rem;
+color: #d4af37;
+cursor: pointer;
 }
 
-/* Media Queries Móvil */
-@media (max-width: 768px) {
-  .servicios-grid,
-  .testimonios-grid {
-    grid-template-columns: 1fr;
-    max-height: 10rem;
-  }
-  .hero-title,
-  .tagline-text,
-  .section-title,
-  .cta-title {
-    font-size: 42px;
-  }
+/* =========================================================
+Media Queries para pantallas pequeñas
+========================================================= */
+@media (max-width: 48rem) {
+.grid-servicios,
+.grid-testimonios {
+grid-template-columns: 1fr;
+}
+.servicio-img-container {
+height: 35vh;
+}
+.testimonio-img-container {
+width: 4rem;
+height: 4rem;
+}
+.titulo-llamada-accion {
+font-size: 2rem;
+}
+.texto-llamada-accion {
+font-size: 1rem;
+}
 }

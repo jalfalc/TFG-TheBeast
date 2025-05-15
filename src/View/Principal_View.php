@@ -27,11 +27,19 @@
     <div class="carousel-dots"></div>
   </section>
 
-  <section id="horario">
-    <h1>Horario de apertura</h1>
-    <p>Martes a viernes: 09:00-15:00 | 17:00-21:00</p>
-    <p>Sábado y domingo: 09:00-14:00 | 15:00-18:00</p>
-    <p>Lunes: Cerrado</p>
+   <section id="servicios">
+    <!-- Imagen reducida y alineada a la izquierda -->
+    <img
+      src="../img/principal/servicios.jpg"
+      alt="Servicios"
+      class="imagen-servicios"
+    >
+
+    <!-- Contenedor de texto y botón alineado a la derecha -->
+    <div class="contenido-servicios">
+      <h1>Descubre los servicios que ofrecemos a nuestros clientes</h1>
+      <button class="boton-ver-servicios"><a href="index.php?controlador=Servicios">Ver servicios</a></button>
+    </div>
   </section>
 
   <section id="contacto">
@@ -51,8 +59,18 @@
       </div>
     </div>
   </section>
+
+  <section id="horario">
+    <h1>Horario de apertura</h1>
+    <p>Martes a viernes: 09:00-15:00 | 17:00-21:00</p>
+    <p>Sábado y domingo: 09:00-14:00 | 15:00-18:00</p>
+    <p>Lunes: Cerrado</p>
+  </section>
+  
   <?php include 'Footer/Footer_View.php';?>
   
+  <script src="js/header.js"></script>
   <script src="js/principal/principal.js"></script>
+  
 </body>
 </html>

@@ -110,12 +110,15 @@ body {
   background: rgba(255,255,255,0.9);
 }
 
+
 /* Sección contacto */
 #contacto {
   padding: 3rem 2rem;
   background-color: var(--bck);
   color: var(--bg);
   text-align: center;
+  border-bottom: 1px solid var(--bg);
+  margin-top: 2rem;
 }
 #contacto h1 {
   font-size: 2.5rem;
@@ -141,13 +144,14 @@ body {
   font-size: 1rem;
 }
 
+
+
 /* Sección horario */
 #horario {
   padding: 3rem 2rem;
   background-color: var(--bck);
   color: var(--bg);
   text-align: center;
-  border-bottom: 1px solid var(--bg);
 }
 #horario h1 {
   font-size: 2.5rem;
@@ -159,12 +163,93 @@ body {
   margin-bottom: 1rem;
 }
 
+
+/* =========================================================
+   Sección “Servicios” centrada, imagen grande a la izquierda
+   y contenido (texto+botón) a la derecha
+   ========================================================= */
+#servicios {
+  display: flex;
+  align-items: center;          /* Centra verticalmente imagen y contenido */
+  justify-content: center;      /* Centra el conjunto en la pantalla */
+  gap: 4rem;                    /* Espacio entre imagen y contenido */
+  max-width: 1200px;            /* No ocupe más de este ancho */
+  margin: 0 auto;               /* Centrado horizontal del bloque */
+  padding: 4rem 2rem;           /* Separación interna */
+  background-color: var(--bck);
+  border-bottom: 1px solid var(--bg);
+}
+
+/* Imagen más ancha (aprox. 50% del contenedor) */
+#servicios .imagen-servicios {
+  flex: 0 0 50%;
+  max-width: 600px;             /* límite de anchura */
+  width: 100%;                  /* rellena su 50% */
+  height: auto;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+/* Contenido textual + botón alineado a la derecha */
+#servicios .contenido-servicios {
+  flex: 1;                      /* ocupa el espacio restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;      /* centra verticalmente dentro del panel */
+  text-align: left;             /* texto alineado a la izquierda */
+}
+
+/* Ajustes de tipografía y botón */
+#servicios .contenido-servicios h1 {
+  font-size: 2.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--bg);
+}
+#servicios .contenido-servicios .boton-ver-servicios {
+  width: max-content;
+  background-color: var(--primary);
+  color: var(--bg);
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+#servicios .contenido-servicios .boton-ver-servicios a{
+  all: unset;
+}
+#servicios .contenido-servicios .boton-ver-servicios:hover {
+  background-color: var(--accent);
+  transform: scale(1.05);
+}
+
+
 /* Responsive Tablet */
 @media (max-width: 48rem) { /* 768px */
   #carousel-contenido h1 { font-size: 2.5rem; }
   #carousel-contenido p  { font-size: 1.2rem; }
   .contacto-items { justify-content: center; }
+  #servicios {
+    gap: 2rem;
+    padding: 3rem 1rem;
+    
+  }
+   #servicios .contenido-servicios {
+    align-items: center;  /* centra el contenido interno */
+    text-align: center;   /* centra el texto */
+  }
+  #servicios .imagen-servicios {
+    flex: 0 0 40%;
+    max-width: 400px;
+  }
+  #servicios .contenido-servicios h1 {
+    font-size: 2rem;
+
+    
+  }
 }
+
 
 /* Responsive Móvil */
 @media (max-width: 30rem) { /* 480px */
@@ -176,5 +261,29 @@ body {
   /* Ocultar flechas en móvil */
   .carousel-btn {
     display: none;
+  }
+   #servicios {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    
+  }
+  #servicios .imagen-servicios {
+    flex: 0 0 auto;
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  #servicios .contenido-servicios {
+    align-items: center;
+    text-align: center;
+  }
+  #servicios .contenido-servicios h1 {
+    font-size: 1.75rem;
+  }
+  #servicios .contenido-servicios .boton-ver-servicios {
+    width: 100%;
+    max-width: 250px;
   }
 }
