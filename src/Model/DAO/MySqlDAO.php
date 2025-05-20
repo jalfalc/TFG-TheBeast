@@ -1,54 +1,86 @@
 <?php
 require_once 'Conexion.php';
 require_once __DIR__ . '/../Usuario.php';
-class MySqlDAO{
+
+class MySqlDAO {
     private $conn;
 
     public function __construct(){
         $this->conn = Conexion::getConexion();
     }
 
-    public function validarUsuario(Usuario $usuario){
-        //Variable que voy a devolver tras realizar mi consulta: true si es usuario válido y false si es inválido.
-        $esCorrecto = false;
+    /**
+     * Valida las credenciales de un usuario usando password_verify().
+     *
+     * @param Usuario $usuario
+     * @return bool  True si el email existe y la contraseña es correcta
+     */
+    public function validarUsuario(Usuario $usuario): bool {
+        // 1) Obtener el hash de la contraseña para este correo
+        $sql  = "SELECT contrasenia FROM usuarios WHERE correo = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(1, $usuario->getCorreo());
+        $stmt->execute();
 
-        //Obtengo el nombre del usuario pasado por parámetro
-        $correo = $usuario->getCorreo();
-
-        //Obtengo la contraseña del usuario pasado por parámetro
-        $contrasenia = $usuario->getContrasenia();
-
-        //Creo la consulta
-        $consulta = "SELECT correo, contrasenia FROM usuarios WHERE correo = ? AND contrasenia = ?";
-
-        //Preparo la consulta
-        $consultaPreparada = $this->conn->prepare($consulta);
-        
-        //Añado los dos parámetros a la consulta
-        $consultaPreparada->bindParam(1, $correo);
-        $consultaPreparada->bindParam(2, $contrasenia);
-
-        //Ejecuto la consulta
-        $consultaPreparada->execute();
-
-        //Si la consulta me da 1 resultado (es que está correcto el usuario) creo la variable de sesión 'loged' 'user'
-        if ($consultaPreparada->rowCount() == 1){
-            $_SESSION['loged'] = true;
-            //$_SESSION['user'] = $usuario->getNombre();
-
-            //Paso a true mi variable booleana de comprobación de usuario
-            $esCorrecto = true;
-
-            //Si no obtengo 1 fila en mi consulta (obtengo 0 o más de 1) muestro mensaje de error
-        }else{
-            
-            echo "Usuario inválido, compruebe las credenciales.";
+        if ($stmt->rowCount() !== 1) {
+            // No existe ese correo
+            return false;
         }
 
-        //Devuelvo mi variable booleana de comprobación de usuario
-        return $esCorrecto;
+        $row     = $stmt->fetch(PDO::FETCH_ASSOC);
+        $hashBD  = $row['contrasenia'];
+        $passPL  = $usuario->getContrasenia();
 
+        // 2) Verificar la contraseña
+        if (password_verify($passPL, $hashBD)) {
+            $_SESSION['loged'] = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Registra un nuevo usuario:
+     *  - Comprueba duplicados por correo
+     *  - Hashea la contraseña con password_hash()
+     *  - Inserta el registro
+     *
+     * @param Usuario $u
+     * @return bool  True si se insertó correctamente, false si el correo ya existía
+     */
+    public function registrarUsuario(Usuario $u): bool {
+        // 1) ¿Correo ya en uso?
+        $sqlCheck = "SELECT id FROM usuarios WHERE correo = ?";
+        $stmt     = $this->conn->prepare($sqlCheck);
+        $stmt->bindParam(1, $u->getCorreo());
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return false;
+        }
+
+        // 2) Generar hash seguro
+        $hash = password_hash($u->getContrasenia(), PASSWORD_DEFAULT);
+
+        // 3) Insertar nuevo usuario con el hash
+        $sqlInsert = "
+            INSERT INTO usuarios
+              (nombre, apellidos, telefono, correo, contrasenia)
+            VALUES
+              (?, ?, ?, ?, ?)
+        ";
+        $stmt = $this->conn->prepare($sqlInsert);
+        $stmt->bindParam(1, $u->getNombre());
+        $stmt->bindParam(2, $u->getApellidos());
+        $stmt->bindParam(3, $u->getTelefono());
+        $stmt->bindParam(4, $u->getCorreo());
+        $stmt->bindParam(5, $hash);
+
+        if ($stmt->execute()) {
+            $_SESSION['loged'] = true;
+            return true;
+        }
+        return false;
     }
 }
-
-?>

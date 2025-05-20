@@ -13,13 +13,18 @@ USE TheBeastBarber;
 
 -- Create the Usuarios table
 CREATE TABLE usuarios (
+  id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(20) NOT NULL,
   apellidos VARCHAR(30) NOT NULL,
+  telefono BIGINT,
   correo VARCHAR(50) NOT NULL,
-  contrasenia VARCHAR(30) NOT NULL,
-  PRIMARY KEY (Correo)
-);
+  contrasenia VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY unique_correo (correo)
+) ENGINE=InnoDB
+  AUTO_INCREMENT=1
+  DEFAULT CHARSET=utf8mb4;
 
 -- Insert initial admin record
-INSERT INTO usuarios (nombre, apellidos, correo, contrasenia)
-VALUES ('admin', 'admin apellidos', 'admin@admin.com', 'admin');
+INSERT INTO usuarios (nombre, apellidos, telefono, correo, contrasenia)
+VALUES ('admin', 'admin apellidos', 123456789, 'admin@admin.com', 'admin');

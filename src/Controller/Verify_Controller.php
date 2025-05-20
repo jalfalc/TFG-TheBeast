@@ -1,28 +1,32 @@
 <?php
 require_once 'Model/DAO/MySqlDAO.php';
 
-//Compruebo que las credenciales han sido enviadas y si lo son creo un objeto 'Usuario' con ellas
-if (isset($_POST['mail']) && isset($_POST['password']) && !empty($_POST['mail']) && !empty($_POST['password'])) {
-    $correo = $_POST['mail'];
-    $contrasenia = $_POST['password'];
 
-    $usuario = new Usuario($correo, $contrasenia);
-
-    //Si no se han enviado ambas credenciales redirijo de nuevo al login
+// 1) Verificar que se envíen ambos campos
+if (
+    isset($_POST['mail'], $_POST['password'])
+    && $_POST['mail'] !== ''
+    && $_POST['password'] !== ''
+) {
+    $correo     = $_POST['mail'];
+    $contrasenia= $_POST['password'];
+    // El constructor de Usuario: (nombre, apellidos, teléfono, correo, contraseña)
+    $usuario    = new Usuario('', '', '', $correo, $contrasenia);
 } else {
-    header("Location: index.php?controlador=Login");
+    // Falta algún campo: volvemos al login sin validar
+    header("Location: index.php?controlador=Login&action=Login");
     exit();
 }
 
-//Creo un objeto "Usuario_DB" para comprobar si el objeto "usuario" existe en base de datos
-$mySqlDAO = new MySqlDAO ();
-
-//Compruebo que exista, si es true redirijo a "User_Page_Vista" y si no a "Login_Vista" de nuevo
-if($mySqlDAO->validarUsuario($usuario)){
+// 2) Intentar validar en base de datos
+$mySqlDAO = new MySqlDAO();
+if ($mySqlDAO->validarUsuario($usuario)) {
+    // Éxito → principal
     header("Location: index.php?controlador=Principal");
     exit();
-} else{
-    header("Location: index.php?controlador=Login");
+} else {
+    // Fallo → de nuevo login, pasando flag de error
+    header("Location: index.php?controlador=Login&action=Login&error=invalid");
     exit();
 }
 ?>

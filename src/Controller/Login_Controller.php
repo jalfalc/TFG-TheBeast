@@ -3,6 +3,12 @@
 if (isset($_SESSION["loged"]) && $_SESSION["loged"] === true) {
     header("Location: index.php");
     exit();
-} 
-require_once ('View/Login_View.php');
-?>
+} else {
+    $action = $_GET['action'];
+
+    if ($action == 'Login') {
+        require_once('View/Login_View.php');
+    } else if ($action == 'Registro') {
+        require_once('View/Registro_View.php');
+    }
+}

@@ -20,7 +20,7 @@ class Conexion{
 
             return $conexion;
         } catch (PDOException $e){ 
-            die("Ha habido un error en la conexión: " . $e->getMessage());
+            die("Ha habido un error en la conexión");
         }
     }
 }

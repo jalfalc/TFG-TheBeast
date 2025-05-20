@@ -10,7 +10,7 @@ body {
   min-height: 100vh; /* altura mínima para ocupar toda la pantalla */;
   font-family: Arial, sans-serif;
 }
-#content-login {
+#content-login, #content-register {
   flex: 1;
   display: flex;
   align-items: center;    /* centra verticalmente */
@@ -23,7 +23,7 @@ background-size: cover;
   
 
 
-.login-container {
+.login-container, .register-container {
   width: 100%;
   max-width: 400px;
   padding: 20px;
@@ -31,12 +31,18 @@ background-size: cover;
   border-radius: 8px;
   background-color: var(--secondary);
   color: var(--bg);
+  text-align: center;
 }
 
 .login-container h2 {
   text-align: center;
 }
 
+#form-login, #form-register {
+  align-items: center;
+  text-align: center;
+
+}
 .form-group {
   margin: 1rem;
 }
@@ -53,7 +59,7 @@ background-size: cover;
 }
 
 .btn {
-  width: 100%;
+  width: 50%;
   padding: 10px;
   background-color: #007bff;
   color: #fff;
@@ -65,4 +71,22 @@ background-size: cover;
 .register-link {
   text-align: center;
   margin-top: 15px;
+}
+
+.register-link a{
+
+  color: var(--accent);
+}
+
+#login-error {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+
+}
+.form-error {
+  margin: 1rem;
+  font-size: 0.9rem;
+  color: red;
+  text-align: center;
 }

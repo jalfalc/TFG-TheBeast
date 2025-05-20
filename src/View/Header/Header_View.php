@@ -19,7 +19,7 @@
         <li><a href="index.php?controlador=Citas">Mis citas</a></li>
         <li><a href="index.php?controlador=Logout" id="logout">Cerrar sesión</a></li>
       <?php } else { ?>
-        <li><a href="index.php?controlador=Login" id="login">Iniciar sesión</a></li>
+        <li><a href="index.php?controlador=Login&action=Login" id="login">Iniciar sesión</a></li>
       <?php } ?>
     </ul>
   </nav>
@@ -38,7 +38,7 @@
         <li><a href="index.php?controlador=Citas">Mis citas</a></li>
         <li><a href="index.php?controlador=Logout" id="logout">Cerrar sesión</a></li>
       <?php } else { ?>
-        <li><a href="index.php?controlador=Login" id="login">Iniciar sesión</a></li>
+        <li><a href="index.php?controlador=Login&action=Login" id="login">Iniciar sesión</a></li>
       <?php } ?>
     </ul>
   </aside>
