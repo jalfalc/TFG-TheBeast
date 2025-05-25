@@ -21,15 +21,15 @@ const servicios = [
   {
     id: 1,
     titulo: "Corte de pelo",
-    descripcion: "Corte tradicional con tijeras/máquina y acabado perfecto.",
+    descripcion: "Corte con tijeras/máquina según el estilo buscado.",
     precio: "8,50€",
     imagen: "../img/servicios/servicio1.png",
-    detalles: "Nuestro corte de pelo clásico incluye lavado, corte con tijeras, degradado personalizado y fijación con cera.",
-    incluye: "Lavado + Corte con tijeras + Degradado + Peinado"
+    detalles: "Nuestro corte de pelo incluye lavado, corte con tijeras y/o máquina, degradado personalizado y peinado. Incluye cualquier tipo de corte.",
+    incluye: "Lavado + Corte con tijeras/máquina + Degradado + Peinado"
   },
   {
     id: 2,
-    titulo: "Arreglo de barba",
+    titulo: "Corte de barba",
     descripcion: "Perfilado y tratamiento completo para tu barba.",
     precio: "7€",
     imagen: "../img/servicios/barba.png",
@@ -38,21 +38,21 @@ const servicios = [
   },
   {
     id: 3,
-    titulo: "Corte & Barba",
-    descripcion: "Combo especial de corte de pelo y arreglo de barba.",
+    titulo: "Corte de pelo y barba",
+    descripcion: "Oferta especial de corte de pelo + arreglo de barba.",
     precio: "13€",
     imagen: "../img/servicios/corte&barba.png",
-    detalles: "Disfruta de un servicio completo: lavado, corte, degradado y perfilado de barba con masaje facial relajante.",
+    detalles: "Disfruta de un servicio completo: lavado, corte, degradado y perfilado de barba con masaje facial relajante, disfrutando de un pequeño descuento.",
     incluye: "Lavado + Corte + Perfilado de barba + Masaje facial"
   },
   {
     id: 4,
     titulo: "Corte de pelo para jubilados",
-    descripcion: "Degradado preciso y cómodo para mayores.",
+    descripcion: "Corte preciso y cómodo para mayores.",
     precio: "6,50€",
     imagen: "../img/servicios/jubilado.png",
-    detalles: "Diseñado para pieles sensibles: corte con máquina suave, acabado limpio y asesoramiento de estilo.",
-    incluye: "Corte con máquina + Acabado + Asesoramiento"
+    detalles: "Requisito imprescindible: presentar documento que demuestre el estado de jubilación.",
+    incluye: "Corte con máquina + Peinado + Lavado"
   },
   {
     id: 5,
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Rellenar título, detalles, duración e incluye
       tituloModal.textContent      = servicioSeleccionado.titulo;
       descripcionModal.textContent = servicioSeleccionado.detalles;
-      duracionModal.textContent    = '30 minutos';  // Valor fijo o podría venir del objeto
+      duracionModal.textContent    = '30 minutos.';  // Valor fijo o podría venir del objeto
       incluyeModal.textContent     = servicioSeleccionado.incluye;
       // Mostrar el modal
       modalInfoServicio.classList.add('open');

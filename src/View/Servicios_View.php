@@ -20,19 +20,19 @@
   <!-- ============================
        SECCIÓN: LLAMADA A LA ACCIÓN
        ============================ -->
-  <div class="seccion-llamada-accion">
-    <div class="contenedor-llamada-accion">
+  <div class="seccion-introduccion">
+    <div class="contenedor-introduccion">
       <!-- Título principal -->
-      <h2 class="titulo-llamada-accion">
+      <h2 class="titulo-introduccion">
         ¿Listo para lucir tu mejor versión?
       </h2>
       <!-- Texto descriptivo -->
-      <p class="texto-llamada-accion">
-        Reserva tu cita hoy y experimenta el servicio premium que mereces.
+      <p class="texto-introduccion">
+        Reserva tu cita hoy y dale a tu pelo el estilo que se merece
       </p>
       <!-- Botón de reserva -->
-      <a href="reservas.html" class="boton-reservar-accion">
-        RESERVAR AHORA
+      <a href="reservas.html" class="boton-reservar">
+        Reservar cita
       </a>
     </div>
   </div>
@@ -53,7 +53,7 @@
   <div class="seccion-testimonios">
     <div class="contenedor-testimonios">
       <!-- Título de la sección de testimonios -->
-      <h2 class="titulo-testimonios">Testimonios</h2>
+      <h2 class="titulo-testimonios">Nuestros clientes opinan...</h2>
       <!-- Aquí se inyectan dinámicamente las tarjetas de testimonio -->
       <div class="grid-testimonios"></div>
     </div>

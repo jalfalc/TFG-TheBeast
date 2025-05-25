@@ -1,13 +1,13 @@
 @import "../colors.css";
 
 footer {
-  background-color: var(--secondary);
-  color: var(--bg);
+  background-color: var(--verdeOscuro);
+  color: var(--blanco);
   text-align: center;
   padding: 1rem;
   position: relative;
   bottom: 0;
-  border-top: 1px solid var(--bg);
+  border-top: 1px solid var(--blanco);
 
 }
 

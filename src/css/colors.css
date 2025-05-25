@@ -1,21 +1,14 @@
 :root {
-  --primary: #00897B;       /* Verde azulado profundo */
-  --secondary: #1A535C;     /* Verde azulado oscuro */
-  --accent: #FFB400;        /* Amarillo ámbar */
-  --bg: #F5F5F5;            /* Gris muy claro */
-  --text: #263238;          /* Azul grisáceo oscuro para texto */
-  --bck: #0D2B32;           /* Fondo oscuro para el logo blanco */
-
-  /* Variables adicionales para servicios y testimonios */
-  --color-fondo-seccion-cta: var(--bck);
-  --color-texto-cta: var(--accent);
-  --color-fondo-boton-cta: var(--accent);
-  --color-fondo-servicio: #111111;
-  --color-borde-servicio: #333333;
-  --color-hover-borde-servicio: var(--accent);
-  --color-titulo-servicio: var(--accent);
-  --color-texto-servicio: var(--text);
-  --color-fondo-testimonios: #0A4A4A;
-  --color-texto-testimonio: var(--text);
-  --color-hover-testimonio: var(--accent);
+  --verdeClaro: #00897B;       /* Verde azulado profundo */
+  --verdeOscuro: #1A535C;     /* Verde azulado oscuro */
+  --amarillo: #FFB400;        /* Amarillo ámbar */
+  --blanco: #F5F5F5;            /* Gris muy claro, casi blanco */
+  --fondoVerde: #0D2B32;       /* Fondo oscuro para el logo blanco */
+  --negro: #000;            /*Color negro puro*/
+  --grisOscuro: #333;         /* Gris oscuro, sin brillo*/
+  --grisClaro: #fff;          /*Gris muy claro, casi blanco*/
+  --azul: #007bff;           /*Azul oscuro brillante*/
+  --rojo: #D10000;           /*Rojo oscuro y con brillo*/
+  --lima: #BFFF00;          /*Color lima, brillante*/
+  
 }
