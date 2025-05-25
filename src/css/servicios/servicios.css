@@ -11,7 +11,7 @@ box-sizing: border-box;
 }
 body {
 background-color: var(--bck);
-color: var(--bg);
+color: var(--blanco);
 line-height: 1.5;
 font-family: Arial, sans-serif;
 }
@@ -19,45 +19,45 @@ font-family: Arial, sans-serif;
 /* =========================================================
 Sección: Llamada a la Acción (CTA)
 ========================================================= */
-.seccion-llamada-accion {
-background-color: #000;
+.seccion-introduccion {
+background-color: var(--negro);
 padding: 3rem 1rem;
 text-align: center;
 }
-.contenedor-llamada-accion {
+.contenedor-introduccion {
 max-width: 90vw;
 margin: 0 auto;
 }
-.titulo-llamada-accion {
-color: #d4af37;
+.titulo-introduccion {
+color: var(--amarillo);
 font-size: 2.5rem;
 margin-bottom: 1rem;
 }
-.texto-llamada-accion {
-color: #ccc;
+.texto-introduccion {
+color: var(--blanco);
 font-size: 1.125rem;
 margin-bottom: 2rem;
 }
-.boton-reservar-accion {
-display: inline-block;
-background-color: #d4af37;
-color: #000;
-padding: 0.75rem 2rem;
-border: none;
-border-radius: 0.5rem;
-font-size: 1rem;
-text-decoration: none;
-transition: background-color 0.3s ease;
+.boton-reservar {
+  background-color: var(--amarillo);
+  color: var(--blanco);
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 3.125rem; /* 50px de radio para píldora redondeada */
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
 }
-.boton-reservar-accion:hover {
-background-color: #b38e2e;
+.boton-reservar:hover {
+background-color: var(--verdeClaro);
 }
 
 /* =========================================================
 Sección: Servicios
 ========================================================= */
 .seccion-servicios {
-background-color: #000;
+background-color: var(--negro);
 padding: 5vh 0;
 }
 .contenedor-servicios {
@@ -71,8 +71,8 @@ grid-template-columns: repeat(3, 1fr);
 gap: 2vw;
 }
 .servicio-card {
-background-color: #111;
-border: 0.0625rem solid #333;
+background-color: var(--negro);
+border: 0.0625rem solid var(--grisOscuro);
 border-radius: 0.5rem;
 display: flex;
 flex-direction: column;
@@ -81,7 +81,7 @@ transition: transform 0.3s ease, border-color 0.3s ease;
 min-height: 60vh;
 }
 .servicio-card:hover {
-border-color: #d4af37;
+border-color: var(--amarillo);
 transform: translateY(-0.3125rem);
 }
 .servicio-img-container {
@@ -93,19 +93,19 @@ overflow: hidden;
 width: 100%;
 height: 100%;
 object-fit: contain;
-background-color: #000;
+background-color: var(--negro);
 transition: transform 0.5s ease;
 }
 .servicio-card:hover .servicio-img {
 transform: scale(1.1);
 }
 .servicio-title {
-color: #d4af37;
+color: var(--amarillo);
 font-size: 1.75rem;
 margin: 1rem;
 }
 .servicio-desc {
-color: #ccc;
+color: var(--blanco);
 margin: 0 1rem 1rem;
 flex: 1;
 }
@@ -116,14 +116,14 @@ align-items: center;
 padding: 1rem;
 }
 .servicio-precio {
-color: #d4af37;
+color: var(--amarillo);
 font-weight: bold;
 font-size: 1.25rem;
 }
 .servicio-info-btn {
 background: transparent;
-border: 0.0625rem solid #d4af37;
-color: var(--bg);
+border: 0.0625rem solid var(--amarillo);
+color: var(--blanco);
 padding: 0.5rem 1rem;
 border-radius: 0.25rem;
 font-size: 1rem;
@@ -131,15 +131,15 @@ cursor: pointer;
 transition: background-color 0.3s ease, color 0.3s ease;
 }
 .servicio-info-btn:hover {
-background: #d4af37;
-color: #000;
+background: var(--amarillo);
+color: var(--negro);
 }
 
 /* =========================================================
 Sección: Testimonios
 ========================================================= */
 .seccion-testimonios {
-background-color: #0a4a4a;
+background-color: var(--verdeOscuro);
 padding: 4rem 0;
 }
 .contenedor-testimonios {
@@ -147,7 +147,7 @@ max-width: 90vw;
 margin: 0 auto;
 }
 .titulo-testimonios {
-color: #ccc;
+color: var(--blanco);
 font-size: 2.5rem;
 text-align: center;
 margin-bottom: 2rem;
@@ -159,14 +159,14 @@ gap: 2rem;
 padding: 0 1rem;
 }
 .testimonio-card {
-background: #000;
+background: var(--negro);
 padding: 1.5rem;
 border-radius: 0.5rem;
 display: flex;
 flex-direction: column;
 }
 .testimonio-card:hover {
-border: 1px solid #d4af37;
+border: 1px solid var(--amarillo);
 transform: scale(1.1);
 }
 .testimonio-header {
@@ -188,16 +188,16 @@ height: 100%;
 object-fit: cover;
 }
 .testimonio-info h3 {
-color: #fff;
+color: var(--blanco);
 margin: 0;
 font-size: 1.25rem;
 }
 .testimonio-stars {
-color: #d4af37;
+color: var(--amarillo);
 margin-top: 0.25rem;
 }
 .testimonio-text {
-color: #ccc;
+color: var(--blanco);
 font-style: italic;
 margin-top: auto;
 }
@@ -222,7 +222,7 @@ z-index: 1000;
 display: flex;
 }
 .contenido-modal-informacion {
-background: #111;
+background: var(--negro);
 border-radius: 0.5rem;
 padding: 2rem;
 max-width: 80vw;
@@ -237,7 +237,7 @@ right: 1rem;
 background: transparent;
 border: none;
 font-size: 1.5rem;
-color: #d4af37;
+color: var(--amarillo);
 cursor: pointer;
 }
 
@@ -256,10 +256,10 @@ height: 35vh;
 width: 4rem;
 height: 4rem;
 }
-.titulo-llamada-accion {
+.titulo-introduccion {
 font-size: 2rem;
 }
-.texto-llamada-accion {
+.texto-introduccion {
 font-size: 1rem;
 }
 }

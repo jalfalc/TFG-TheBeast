@@ -6,7 +6,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
 }
 
 #content-reservas {
@@ -25,7 +24,7 @@ body {
 .mis-reservas-container {
   width: 100%;
   max-width: 900px;
-  background: #fff;
+  background: var(--grisClaro);
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -34,7 +33,7 @@ body {
 .mis-reservas-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: var(--grisOscuro);
 }
 
 .tabla-reservas {
@@ -44,15 +43,16 @@ body {
 .tabla-reservas th,
 .tabla-reservas td {
   padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--grisClaro);
   text-align: left;
 }
 .tabla-reservas th {
-  background-color: #f0f0f0;
+  background-color: var(--blanco);
   color: #222;
+  text-align: center;
 }
 .tabla-reservas tbody tr:nth-child(even) {
-  background-color: #fafafa;
+  background-color: var(--grisClaro);
 }
 
 .acciones {
@@ -67,11 +67,12 @@ body {
   cursor: pointer;
 }
 .btn-modificar {
-  background-color: #4caf50;
+  text-decoration: none;
+  background-color: var(--verdeClaro);
   color: #fff;
 }
 .btn-eliminar {
-  background-color: #f44336;
+  background-color: var(--rojo);
   color: #fff;
 }
 
