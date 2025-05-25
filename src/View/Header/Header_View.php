@@ -1,6 +1,6 @@
 <header>
   <div class="logo-container">
-    <img src="../img/logo.png" alt="Logo The Beast Barber">
+    <a href="index.php"><img src="../img/logo.png" alt="Logo The Beast Barber"></a>
   </div>
 
   <!-- Botón hamburguesa (solo en móvil) -->
@@ -14,9 +14,9 @@
       <li><a href="index.php">Inicio</a></li>
       <li><a href="index.php?controlador=Servicios">Servicios</a></li>
       <li><a href="index.php?controlador=Principal#contacto">Contacto</a></li>
-      <li><a href="#">Reservar</a></li>
+      <li><a href="index.php?controlador=Reservas">Reservar</a></li>
       <?php if (isset($_SESSION["loged"]) && $_SESSION["loged"] === true) { ?>
-        <li><a href="index.php?controlador=Citas">Mis citas</a></li>
+        <li><a href="index.php?controlador=MisReservas">Mis citas</a></li>
         <li><a href="index.php?controlador=Logout" id="logout">Cerrar sesión</a></li>
       <?php } else { ?>
         <li><a href="index.php?controlador=Login&action=Login" id="login">Iniciar sesión</a></li>
@@ -33,9 +33,9 @@
       <li><a href="index.php">Inicio</a></li>
       <li><a href="index.php?controlador=Servicios">Servicios</a></li>
       <li><a href="index.php?controlador=Principal#contacto">Contacto</a></li>
-      <li><a href="#">Reservar</a></li>
+      <li><a href="index.php?controlador=Reservas">Reservar</a></li>
       <?php if (isset($_SESSION["loged"]) && $_SESSION["loged"] === true) { ?>
-        <li><a href="index.php?controlador=Citas">Mis citas</a></li>
+        <li><a href="index.php?controlador=MisReservas">Mis citas</a></li>
         <li><a href="index.php?controlador=Logout" id="logout">Cerrar sesión</a></li>
       <?php } else { ?>
         <li><a href="index.php?controlador=Login&action=Login" id="login">Iniciar sesión</a></li>

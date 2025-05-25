@@ -1,0 +1,78 @@
+#content-reservas {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  background: var(--secondary);
+}
+.reservas-container {
+  width: 100%;
+  max-width: 600px;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.reservas-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.horas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.horas-grid button {
+  padding: 0.5rem;
+  border: 1px solid var(--accent);
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.horas-grid button:hover,
+.horas-grid button.seleccionada {
+  background: var(--accent);
+  color: #fff;
+}
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.reserva-mensaje {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.reserva-mensaje.error {
+  color: red;
+}
+.reserva-mensaje.success {
+  color: green;
+}

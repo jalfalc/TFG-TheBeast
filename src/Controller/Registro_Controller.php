@@ -42,7 +42,7 @@ $mySqlDAO = new MySqlDAO();
 // 4. Intentamos registrar
 if ($mySqlDAO->registrarUsuario($usuario)) {
     // Éxito → principal (o login si prefieres)
-    header("Location: index.php?controlador=Login&action=Login");
+    header("Location: index.php?controlador=Login&action=MisReservas");
     exit();
 } else {
     // Fracaso: correo duplicado u otro error en DAO

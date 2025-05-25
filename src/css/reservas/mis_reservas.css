@@ -1,0 +1,93 @@
+/* css/reservas/mis_reservas.css */
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+}
+
+#content-reservas {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../../img/login/login-background.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mis-reservas-container {
+  width: 100%;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mis-reservas-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.tabla-reservas {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabla-reservas th,
+.tabla-reservas td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.tabla-reservas th {
+  background-color: #f0f0f0;
+  color: #222;
+}
+.tabla-reservas tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.5rem;
+}
+.btn-modificar,
+.btn-eliminar {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-modificar {
+  background-color: #4caf50;
+  color: #fff;
+}
+.btn-eliminar {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.mensaje-no-reservas {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+.btn-reservar {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem;
+  background-color: #2196f3;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}

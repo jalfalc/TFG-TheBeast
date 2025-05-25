@@ -25,6 +25,15 @@ CREATE TABLE usuarios (
   AUTO_INCREMENT=1
   DEFAULT CHARSET=utf8mb4;
 
--- Insert initial admin record
-INSERT INTO usuarios (nombre, apellidos, telefono, correo, contrasenia)
-VALUES ('admin', 'admin apellidos', 123456789, 'admin@admin.com', 'admin');
+-- Solo guardamos las reservas confirmadas
+CREATE TABLE citas_reservadas (
+  id INT NOT NULL AUTO_INCREMENT,
+  usuario_id INT       NOT NULL,
+  servicio   VARCHAR(50) NOT NULL,
+  fecha      DATE      NOT NULL,
+  hora       TIME      NOT NULL,
+  creado_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_reserva (fecha, hora),
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);

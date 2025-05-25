@@ -1,11 +1,10 @@
-/* principal.css */
-@import "../colors.css";
+@import "../colors.css"; /* Variables de color personalizadas */
 
-/* Reset y base */
+/* Reset y caja global */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
 }
 body {
   font-family: Arial, sans-serif;
@@ -14,29 +13,30 @@ body {
   line-height: 1.5;
 }
 
-/* Carousel */
+/* ===== Carousel ===== */
 #carousel {
   width: 100%;
-  height: 80vh;
+  height: 80vh; /* Ocupa el 80% de la altura de la ventana */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Oculta lo que sobresale */
 }
 #carousel::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: rgba(45,49,66,0.6);
+  inset: 0; /* top/right/bottom/left = 0 */
+  background: rgba(45, 49, 66, 0.6); /* Capa semitransparente oscura */
   z-index: 1;
 }
 .carousel-slides {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: blur(0.25rem) scale(1.03);
+  background-size: cover;      /* Ajusta la imagen al contenedor */
+  background-position: center; /* Centra la imagen */
+  filter: blur(0.25rem) scale(1.03); 
+    /* Aplica desenfoque y ligero zoom (para suavizar bordes) */
   transform-origin: center;
   transition: opacity 1s ease-in-out;
   opacity: 1;
@@ -44,12 +44,13 @@ body {
 }
 #carousel-contenido {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Por encima de capas oscuras y slides */
   text-align: center;
   color: var(--bg);
   padding: 2rem;
-  max-width: 37.5rem; /* 600px */
+  max-width: 37.5rem;
 }
+/* Títulos del carousel */
 #carousel-contenido h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -58,13 +59,14 @@ body {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
 }
+/* Botón principal */
 #carousel-contenido button {
   background-color: var(--primary);
   color: var(--bg);
   font-size: 1rem;
   padding: 0.75rem 2rem;
   border: none;
-  border-radius: 3.125rem; /* 50px */
+  border-radius: 3.125rem; /* 50px de radio para píldora redondeada */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
@@ -72,23 +74,12 @@ body {
   background-color: var(--accent);
   transform: scale(1.05);
 }
-
-/* Controles del carousel */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  border: none;
-  font-size: 2rem;
-  padding: 0.25rem 0.75rem;
-  cursor: pointer;
-  z-index: 2;
+#carousel-contenido button a {
+  text-decoration: none;
+  color: inherit; /* Hereda color del botón */
 }
-.carousel-btn.prev { left: 1rem; }
-.carousel-btn.next { right: 1rem; }
 
+/* Indicadores (dots) */
 .carousel-dots {
   position: absolute;
   bottom: 1rem;
@@ -99,25 +90,24 @@ body {
   z-index: 2;
 }
 .carousel-dots button {
-  width: 0.75rem;   /* 12px */
-  height: 0.75rem;  /* 12px */
+  width: 0.75rem;
+  height: 0.75rem;
   border-radius: 50%;
   border: none;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 }
 .carousel-dots button.active {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
 }
 
-
-/* Sección contacto */
+/* ===== Sección Contacto ===== */
 #contacto {
   padding: 3rem 2rem;
   background-color: var(--bck);
   color: var(--bg);
   text-align: center;
-  border-bottom: 1px solid var(--bg);
+  border-bottom: 1px solid var(--bg); /* Línea divisoria */
   margin-top: 2rem;
 }
 #contacto h1 {
@@ -128,13 +118,13 @@ body {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 2rem; /* Separación entre iconos */
 }
 .contacto-items .item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 7.5rem; /* 120px */
+  width: 7.5rem; /* Ancho fijo para uniformidad */
 }
 .contacto-items img {
   width: 3.125rem; /* 50px */
@@ -144,9 +134,7 @@ body {
   font-size: 1rem;
 }
 
-
-
-/* Sección horario */
+/* ===== Sección Horario ===== */
 #horario {
   padding: 3rem 2rem;
   background-color: var(--bck);
@@ -163,111 +151,89 @@ body {
   margin-bottom: 1rem;
 }
 
-
-/* =========================================================
-   Sección “Servicios” centrada, imagen grande a la izquierda
-   y contenido (texto+botón) a la derecha
-   ========================================================= */
+/* ===== Sección Servicios ===== */
 #servicios {
   display: flex;
-  align-items: center;          /* Centra verticalmente imagen y contenido */
-  justify-content: center;      /* Centra el conjunto en la pantalla */
-  gap: 4rem;                    /* Espacio entre imagen y contenido */
-  max-width: 1200px;            /* No ocupe más de este ancho */
-  margin: 0 auto;               /* Centrado horizontal del bloque */
-  padding: 4rem 2rem;           /* Separación interna */
+  align-items: center;      /* Centra verticalmente contenidos */
+  justify-content: center;  /* Centra horizontalmente todo */
+  gap: 4rem;                /* Espacio entre imagen y texto */
+  max-width: 1200px;        /* Ancho máximo del bloque */
+  margin: 0 auto;           /* Centrar horizontalmente */
+  padding: 4rem 2rem;
   background-color: var(--bck);
   border-bottom: 1px solid var(--bg);
 }
-
-/* Imagen más ancha (aprox. 50% del contenedor) */
 #servicios .imagen-servicios {
-  flex: 0 0 50%;
-  max-width: 600px;             /* límite de anchura */
-  width: 100%;                  /* rellena su 50% */
+  flex: 0 0 50%;    /* Ocupa 50% del contenedor */
+  max-width: 600px; /* Limita anchura máxima */
+  width: 100%;
   height: auto;
-  border-radius: 0.5rem;
-  object-fit: cover;
+  border-radius: 0.5rem; /* Bordes ligeramente redondeados */
+  object-fit: cover;     /* Escala correcta sin deformar */
 }
-
-/* Contenido textual + botón alineado a la derecha */
 #servicios .contenido-servicios {
-  flex: 1;                      /* ocupa el espacio restante */
+  flex: 1; /* Ocupa espacio restante */
   display: flex;
   flex-direction: column;
-  justify-content: center;      /* centra verticalmente dentro del panel */
-  text-align: left;             /* texto alineado a la izquierda */
+  justify-content: center;
+  text-align: left;
 }
-
-/* Ajustes de tipografía y botón */
 #servicios .contenido-servicios h1 {
   font-size: 2.25rem;
   margin-bottom: 1.5rem;
   color: var(--bg);
 }
 #servicios .contenido-servicios .boton-ver-servicios {
-  width: max-content;
+  width: max-content;     /* Ajusta ancho al texto interno */
   background-color: var(--primary);
   color: var(--bg);
   padding: 0.75rem 2rem;
   border: none;
-  border-radius: 2rem;
+  border-radius: 2rem;    /* Bordes en píldora */
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
-#servicios .contenido-servicios .boton-ver-servicios a{
-  all: unset;
+#servicios .contenido-servicios .boton-ver-servicios a {
+  all: unset;             /* Elimina estilos por defecto del <a> */
 }
 #servicios .contenido-servicios .boton-ver-servicios:hover {
   background-color: var(--accent);
   transform: scale(1.05);
 }
 
-
-/* Responsive Tablet */
-@media (max-width: 48rem) { /* 768px */
+/* ===== Responsive Tablet ===== */
+@media (max-width: 60rem) {
   #carousel-contenido h1 { font-size: 2.5rem; }
-  #carousel-contenido p  { font-size: 1.2rem; }
+  #carousel-contenido p { font-size: 1.2rem; }
   .contacto-items { justify-content: center; }
   #servicios {
-    gap: 2rem;
+    gap: 1rem;
     padding: 3rem 1rem;
-    
   }
-   #servicios .contenido-servicios {
-    align-items: center;  /* centra el contenido interno */
-    text-align: center;   /* centra el texto */
+  #servicios .contenido-servicios {
+    align-items: center;
+    text-align: center;
   }
-  #servicios .imagen-servicios {
-    flex: 0 0 40%;
-    max-width: 400px;
-  }
-  #servicios .contenido-servicios h1 {
-    font-size: 2rem;
-
-    
-  }
+  #servicios .imagen-servicios { max-width: 400px; }
+  #servicios .contenido-servicios h1 { font-size: 2rem; }
 }
 
-
-/* Responsive Móvil */
-@media (max-width: 30rem) { /* 480px */
+/* ===== Responsive Móvil ===== */
+@media (max-width: 37rem) {
   #carousel { height: 60vh; }
   #carousel-contenido { padding-top: 1rem; }
-  .contacto-items { flex-direction: column; align-items: center; }
+  .contacto-items {
+    flex-direction: column;
+    align-items: center;
+  }
   .contacto-items .item { width: auto; }
 
-  /* Ocultar flechas en móvil */
-  .carousel-btn {
-    display: none;
-  }
-   #servicios {
+  #servicios {
     flex-direction: column;
     text-align: center;
     padding: 2rem 1rem;
     gap: 2rem;
-    
   }
   #servicios .imagen-servicios {
     flex: 0 0 auto;
@@ -279,9 +245,7 @@ body {
     align-items: center;
     text-align: center;
   }
-  #servicios .contenido-servicios h1 {
-    font-size: 1.75rem;
-  }
+  #servicios .contenido-servicios h1 { font-size: 1.75rem; }
   #servicios .contenido-servicios .boton-ver-servicios {
     width: 100%;
     max-width: 250px;

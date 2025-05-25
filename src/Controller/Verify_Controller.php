@@ -22,7 +22,7 @@ if (
 $mySqlDAO = new MySqlDAO();
 if ($mySqlDAO->validarUsuario($usuario)) {
     // Éxito → principal
-    header("Location: index.php?controlador=Principal");
+    header("Location: index.php?controlador=MisReservas");
     exit();
 } else {
     // Fallo → de nuevo login, pasando flag de error
