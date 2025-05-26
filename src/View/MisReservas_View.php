@@ -1,8 +1,6 @@
 <?php
 // View/MisReservas_View.php
-// Variables disponibles tras llamar a MisReservas_Controller::Mostrar():
-//   - $reservas: array de reservas formateadas
-//   - $_SESSION['success_reserva'] y $_SESSION['error_reserva'] para mensajes flash
+// Variables: $reservas, $_SESSION['success_reserva'], $_SESSION['error_reserva']
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,30 +45,17 @@
           <tbody>
             <?php foreach ($reservas as $r): ?>
               <tr>
-                <td>
-                  <?= htmlspecialchars($r['nombre'] . ' ' . $r['apellidos']) ?>
-                </td>
-                <td>
-                  <?= htmlspecialchars($r['fecha_formateada']) ?>
-                  a las <?= htmlspecialchars($r['hora_corto']) ?>
-                </td>
-                <td>
-                  <?= htmlspecialchars($r['servicio']) ?>
-                </td>
+                <td><?= htmlspecialchars($r['nombre'].' '.$r['apellidos']) ?></td>
+                <td><?= htmlspecialchars($r['fecha_formateada']) ?> a las <?= htmlspecialchars($r['hora_corto']) ?></td>
+                <td><?= htmlspecialchars($r['servicio']) ?></td>
                 <td class="acciones">
-                  <!-- Enlace para modificar -->
-                  <a
-                    href="index.php?controlador=MisReservas&action=Modificar&id=<?= $r['id'] ?>"
-                    class="btn-modificar"
-                  >Modificar</a>
-
-                  <!-- Formulario para eliminar -->
-                  <form
-                    method="post"
-                    action="index.php?controlador=MisReservas&action=Eliminar"
-                    style="display:inline"
-                    onsubmit="return confirm('¿Seguro que deseas cancelar esta cita?');"
-                  >
+                  <!-- Modificar -->
+                  <a href="index.php?controlador=MisReservas&action=Modificar&id=<?= $r['id'] ?>"
+                     class="btn-modificar">Modificar</a>
+                  <!-- Eliminar vía JS -->
+                  <form method="post"
+                        action="index.php?controlador=MisReservas&action=Eliminar"
+                        class="form-eliminar">
                     <input type="hidden" name="id" value="<?= $r['id'] ?>">
                     <button type="submit" class="btn-eliminar">Eliminar</button>
                   </form>
@@ -80,18 +65,18 @@
           </tbody>
         </table>
       <?php else: ?>
-        <p class="mensaje-no-reservas">
-          Actualmente no tienes ninguna reserva pendiente.
-        </p>
+        <p class="mensaje-no-reservas">Actualmente no tienes ninguna reserva pendiente.</p>
         <div class="acciones-sin-reservas">
-          <a href="index.php?controlador=Reservas" class="btn-reservar">
-            Reservar cita
-          </a>
+          <a href="index.php?controlador=Reservas" class="btn-reservar">Reservar cita</a>
         </div>
       <?php endif; ?>
     </div>
   </div>
 
   <?php include 'Footer/Footer_View.php'; ?>
+
+  <!-- scripts -->
+  <script src="js/header.js"></script>
+  <script src="js/reservas/eliminarReserva.js"></script>
 </body>
 </html>

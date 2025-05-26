@@ -32,7 +32,7 @@ class Reservas_Controller {
     // 1) sacamos horas ya reservadas
     $ocupadas = $this->dao->getHorasReservadas($fecha);
 
-    // 2) generamos franjas segun horario real
+    // 2) generamos franjas segun horario real y omitimos las ya ocupadas
     $wd = (new DateTime($fecha))->format('N'); // 1=lunes…7=domingo
     $franjas = [];
     if ($wd>=2 && $wd<=5) {
@@ -59,23 +59,40 @@ class Reservas_Controller {
 
   // /?action=Confirmar procesa el POST
   public function Confirmar(){
-    $uid = $_SESSION['usuario_id'];
-    $servicio = $_POST['servicio'] ?? '';
-    $fecha    = $_POST['fecha']    ?? '';
-    $hora     = $_POST['hora']     ?? '';
-    if (!$servicio||!$fecha||!$hora) {
-      $_SESSION['error_reserva'] = 'Falta elegir servicio, fecha u hora.';
-      header('Location: index.php?controlador=Reservas&action=Mostrar');
-      exit();
+    $uid       = $_SESSION['usuario_id'];
+    $servicio  = $_POST['servicio'] ?? '';
+    $fecha     = $_POST['fecha']    ?? '';
+    $hora      = $_POST['hora']     ?? '';
+
+    // 1) Validar que vengan todos los datos
+    if (!$servicio || !$fecha || !$hora) {
+        $_SESSION['error_reserva'] = 'Falta elegir servicio, fecha u hora.';
+        header('Location: index.php?controlador=Reservas&action=Mostrar');
+        exit();
     }
-    if ($this->dao->reservarCita($uid,$servicio,$fecha,$hora)) {
-      $_SESSION['success_reserva'] = "Cita para $fecha a las $hora confirmada.";
+
+    // 2) Intentar reservar en base de datos
+    if ($this->dao->reservarCita($uid, $servicio, $fecha, $hora)) {
+        // 3) Reformatear la fecha a DD-MM-YYYY para el mensaje
+        $dt = DateTime::createFromFormat('Y-m-d', $fecha);
+        // Si la creación falla, se conserva el formato original
+        if ($dt !== false) {
+            $fechaFormateada = $dt->format('d-m-Y');
+        } else {
+            $fechaFormateada = $fecha;
+        }
+
+        // 4) Mensaje de éxito con formato “día-mes-año”
+        $_SESSION['success_reserva'] = 
+            "Cita para {$fechaFormateada} a las {$hora} confirmada.";
     } else {
-      $_SESSION['error_reserva'] = 'Lo siento, esa hora ya no está disponible.';
+        $_SESSION['error_reserva'] = 'Lo siento, esa hora ya no está disponible.';
     }
+
+    // 5) Redirigir de nuevo al formulario
     header('Location: index.php?controlador=Reservas&action=Mostrar');
     exit();
-  }
+}
 }
 
 // router interno

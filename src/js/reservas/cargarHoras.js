@@ -1,6 +1,4 @@
 // js/reservas/cargarHoras.js
-// Gestiona la carga y selección de horas disponibles mediante AJAX y Flatpickr.
-
 document.addEventListener('DOMContentLoaded', () => {
   const fechaInput     = document.getElementById('fecha');
   const servicioSelect = document.getElementById('servicio');
@@ -10,42 +8,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let horaSel = null;
 
-  // 1) Inicializar Flatpickr en el input de fecha
+  // 1) Inicializar Flatpickr:
   flatpickr(fechaInput, {
-    inline: true,
-    minDate: "today",
-    dateFormat: "Y-m-d",
-    onChange: recargarHoras
+    locale: 'es',             // usa traducción al español
+    firstDayOfWeek: 1,        // lunes como primer día
+    monthSelectorType: "dropdown", // despliega mes + año
+    inline: true,             // siempre visible
+    minDate: "today",         // no deja fechas pasadas
+    dateFormat: "Y-m-d",      // formato interno
+    onChange: recargarHoras,  // al cambiar fecha → recargar horas
   });
 
-  // 2) Refrescar cuando cambie el servicio
+  // 2) Si cambia el servicio, también recarga horas
   servicioSelect.addEventListener('change', recargarHoras);
 
-  /**
-   * Recarga la lista de horas libres desde el servidor
-   * según la fecha y servicio seleccionados.
-   */
+  // 3) Función que pide al servidor las horas libres y las pinta:
   async function recargarHoras() {
-    const fecha   = fechaInput.value;
+    const fecha    = fechaInput.value;
     const servicio = servicioSelect.value;
-
-    // Si falta algún dato, limpiar lista y deshabilitar
     if (!fecha || !servicio) {
       horasCont.innerHTML = "";
       btnConfirmar.disabled = true;
       return;
     }
-
-    // Petición AJAX a la acción Horas de Reservas_Controller
     const res = await fetch(
-      `index.php?controlador=Reservas&action=Horas&fecha=${fecha}` +
-      `&servicio=${encodeURIComponent(servicio)}`
+      `index.php?controlador=Reservas&action=Horas`
+      + `&fecha=${encodeURIComponent(fecha)}`
+      + `&servicio=${encodeURIComponent(servicio)}`
     );
     if (!res.ok) return;
-
     const { horas } = await res.json();
 
-    // Limpiar contenedor y reconstruir botones
     horasCont.innerHTML = "";
     horas.forEach(h => {
       const btn = document.createElement('button');
@@ -53,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = h;
       btn.dataset.hora = h;
       btn.addEventListener('click', () => {
-        // Marcar selección
+        // Desmarcar anterior
         horasCont.querySelector('button.seleccionada')
-          ?.classList.remove('seleccionada');
+                 ?.classList.remove('seleccionada');
         btn.classList.add('seleccionada');
         horaSel = h;
         horaOculta.value = h;
@@ -64,15 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
       horasCont.appendChild(btn);
     });
 
-    // Reset selección previa
+    // Reset selección si recarga desde cero
     horaSel = null;
     horaOculta.value = "";
     btnConfirmar.disabled = true;
   }
 
-  // 3) Auto-recarga cada 30 segundos para evitar choques
+  // 4) Auto-refresh cada 30s para mantener horas actualizadas
   setInterval(recargarHoras, 30000);
 
-  // 4) Carga inicial de horas
+  // 5) Primera carga de horas (aunque aún no haya fecha/servicio)
   recargarHoras();
 });
