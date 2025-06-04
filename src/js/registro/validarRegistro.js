@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 'telefono',
-      validacion: v => /^[0-9]{7,15}$/.test(v),
-      mensaje: 'Solo dígitos (7–15 caracteres)'
+      validacion: v => /^[0-9]{9}$/.test(v),
+      mensaje: 'Solo números, 9 dígitos'
     },
     {
       id: 'mail',

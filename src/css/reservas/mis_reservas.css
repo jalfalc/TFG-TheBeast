@@ -1,94 +1,119 @@
-/* css/reservas/mis_reservas.css */
+@import "../colors.css";
 
+/* ==============================================
+   Wrapper y tipografía base
+   ============================================== */
 body {
-  margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
-
 #content-reservas {
   flex: 1;
-  padding: 2rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
   background-image: url("../../../img/login/login-background.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
+/* ==============================================
+   Caja principal
+   ============================================== */
 .mis-reservas-container {
   width: 100%;
-  max-width: 900px;
-  background: var(--grisClaro);
+  max-width: 800px;
+  background: var(--blanco);
   border-radius: 10px;
   padding: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 .mis-reservas-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: var(--grisOscuro);
+  color: #333;
 }
 
+/* ==============================================
+   Tabla de reservas
+   ============================================== */
 .tabla-reservas {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 1rem;
 }
 .tabla-reservas th,
 .tabla-reservas td {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--grisClaro);
-  text-align: left;
-}
-.tabla-reservas th {
-  background-color: var(--blanco);
-  color: #222;
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
   text-align: center;
 }
-.tabla-reservas tbody tr:nth-child(even) {
-  background-color: var(--grisClaro);
-}
 
+/* ==============================================
+   Botones de acción: mismo tamaño
+   ============================================== */
 .acciones {
   display: flex;
   gap: 0.5rem;
 }
 .btn-modificar,
 .btn-eliminar {
-  padding: 0.4rem 0.8rem;
+  flex: 1;             /* mismo ancho */
+  padding: 0.5rem;
+  text-align: center;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 0.9rem;
 }
 .btn-modificar {
+  background: var(--verdeClaro);
+  color: var(--blanco);
   text-decoration: none;
-  background-color: var(--verdeClaro);
-  color: #fff;
 }
 .btn-eliminar {
-  background-color: var(--rojo);
-  color: #fff;
+  background: var(--rojo);
+  color: var(--blanco);
 }
 
+/* ==============================================
+   Estado “sin reservas”
+   ============================================== */
 .mensaje-no-reservas {
   text-align: center;
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem; /* separa del botón */
+}
+.acciones-sin-reservas {
+  text-align: center;
+  margin-top: 0;
 }
 .btn-reservar {
-  display: block;
-  width: fit-content;
-  margin: 0 auto;
-  padding: 0.6rem 1.2rem;
-  background-color: #2196f3;
-  color: #fff;
-  border-radius: 4px;
+  background: #2196f3;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
   text-decoration: none;
+}
+
+/* ==============================================
+   Mensajes flash centrados en verde
+   ============================================== */
+.reserva-mensaje.success {
+  color: var(--verdeClaro);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ==============================================
+   Responsive
+   ============================================== */
+@media (max-width: 600px) {
+  .acciones {
+    flex-direction: column;
+  }
 }

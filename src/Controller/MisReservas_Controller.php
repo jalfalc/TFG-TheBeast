@@ -58,17 +58,32 @@ class MisReservas_Controller {
      * Muestra el formulario de edición para una reserva específica.
      */
     public function Modificar() {
-        $id = (int)($_GET['id'] ?? 0);
-        if (!$id) {
-            $this->redirectMostrar();
-        }
-        $reserva = $this->dao->getReservaPorId($id);
-        if (!$reserva) {
-            $this->redirectMostrar();
-        }
-        // Vista que mostrará flatpickr y slots
-        require_once 'View/EditarReserva_View.php';
+    $id = (int)($_GET['id'] ?? 0);
+    if (!$id) {
+        $this->redirectMostrar();
     }
+    $reserva = $this->dao->getReservaPorId($id);
+    if (!$reserva) {
+        $this->redirectMostrar();
+    }
+
+    // Formatear fecha y hora para mostrar "Fecha de la reserva actual"
+    $dias  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    $meses = [
+        1=>'enero',2=>'febrero',3=>'marzo',4=>'abril',
+        5=>'mayo',6=>'junio',7=>'julio',8=>'agosto',
+        9=>'septiembre',10=>'octubre',11=>'noviembre',12=>'diciembre'
+    ];
+    $dt = new DateTime($reserva['fecha']);
+    $dSemana = $dias[(int)$dt->format('w')];
+    $dNumero = $dt->format('j');
+    $mNumero = (int)$dt->format('n');
+    $anio    = $dt->format('Y');
+    $reserva['fecha_formateada'] = "$dSemana $dNumero de {$meses[$mNumero]} de $anio";
+    $reserva['hora_corto']       = substr($reserva['hora'], 0, 5);
+
+    require_once 'View/EditarReserva_View.php';
+}
 
     /**
      * Procesa el envío del formulario de edición de reserva.

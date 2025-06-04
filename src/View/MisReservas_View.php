@@ -19,7 +19,7 @@
 
   <div id="content-reservas">
     <div class="mis-reservas-container">
-      <h2>Mis Reservas</h2>
+      <h2>Mis citas</h2>
 
       <!-- Flash messages -->
       <?php if (!empty($_SESSION['success_reserva'])): ?>
@@ -38,7 +38,6 @@
         <table class="tabla-reservas">
           <thead>
             <tr>
-              <th>Cliente</th>
               <th>Fecha</th>
               <th>Servicio</th>
               <th>Acciones</th>
@@ -47,9 +46,6 @@
           <tbody>
             <?php foreach ($reservas as $r): ?>
               <tr>
-                <td>
-                  <?= htmlspecialchars($r['nombre'] . ' ' . $r['apellidos']) ?>
-                </td>
                 <td>
                   <?= htmlspecialchars($r['fecha_formateada']) ?>
                   a las <?= htmlspecialchars($r['hora_corto']) ?>
@@ -64,12 +60,11 @@
                     class="btn-modificar"
                   >Modificar</a>
 
-                  <!-- Formulario para eliminar -->
+                  <!-- Botón para eliminar (confirm en JS) -->
                   <form
                     method="post"
                     action="index.php?controlador=MisReservas&action=Eliminar"
-                    style="display:inline"
-                    onsubmit="return confirm('¿Seguro que deseas cancelar esta cita?');"
+                    class="form-eliminar"
                   >
                     <input type="hidden" name="id" value="<?= $r['id'] ?>">
                     <button type="submit" class="btn-eliminar">Eliminar</button>
@@ -81,7 +76,7 @@
         </table>
       <?php else: ?>
         <p class="mensaje-no-reservas">
-          Actualmente no tienes ninguna reserva pendiente.
+          Actualmente no tienes ninguna cita pendiente.
         </p>
         <div class="acciones-sin-reservas">
           <a href="index.php?controlador=Reservas" class="btn-reservar">
@@ -93,5 +88,9 @@
   </div>
 
   <?php include 'Footer/Footer_View.php'; ?>
+
+  <!-- scripts -->
+  <script src="js/header.js"></script>
+  <script src="js/reservas/eliminarReserva.js"></script>
 </body>
 </html>

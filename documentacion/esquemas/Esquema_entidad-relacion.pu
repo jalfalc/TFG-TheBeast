@@ -1,0 +1,23 @@
+@startuml Esquema Entidad-Relación TheBeastBarber
+!define table(x) class x << (T,#FFAAAA) >>
+
+table(usuarios) {
+  +id: INT
+  nombre: VARCHAR(20)
+  apellidos: VARCHAR(30)
+  telefono: BIGINT
+  correo: VARCHAR(50)
+  contrasenia: VARCHAR(255)
+}
+
+table(citas_reservadas) {
+  +id: INT
+  usuario_id: INT
+  servicio: VARCHAR(50)
+  fecha: DATE
+  hora: TIME
+}
+
+usuarios ||--o{ citas_reservadas : tiene
+
+@enduml

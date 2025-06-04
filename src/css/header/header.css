@@ -1,15 +1,18 @@
 @import "../colors.css";
 
-/* Altura fija del header para calcular el top del panel */
+/* -------------------------------------------------
+   Altura fija del header para calcular el top del panel
+------------------------------------------------- */
 :root {
-  --altura-header: 4rem; /* Ajusta si cambias el padding/height del header */
+  --altura-header: 4rem;
 }
 
-/* ------------------------------
+/* -------------------------------------------------
    Estilos generales del header
-   ------------------------------ */
+------------------------------------------------- */
 header {
   position: relative;
+  z-index: 1001;               /* por encima del contenido */
   height: var(--altura-header);
   background-color: var(--verdeOscuro);
   color: var(--blanco);
@@ -19,16 +22,16 @@ header {
   padding: 0 2rem;
 }
 
-/* ------------------------------
+/* -------------------------------------------------
    Logo
-   ------------------------------ */
+------------------------------------------------- */
 .logo-container img {
   height: 3.125rem; /* 50px */
 }
 
-/* ------------------------------
+/* -------------------------------------------------
    Navegación de escritorio
-   ------------------------------ */
+------------------------------------------------- */
 nav.menu-container ul {
   list-style: none;
   display: flex;
@@ -39,22 +42,35 @@ nav.menu-container a {
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
+  font-size: 1.2rem;
 }
 nav.menu-container a:hover {
   color: var(--amarillo);
 }
 
-/* ------------------------------
+/* -------------------------------------------------
    Botones login/logout
-   ------------------------------ */
-#login { color: var(--lima); }
-#login:hover { color: var(--amarillo); transform: scale(1.05); transition: transform 0.2s; }
-#logout { color: var(--rojo); }
-#logout:hover { color: var(--amarillo); transform: scale(1.05); transition: transform 0.2s; }
+------------------------------------------------- */
+#login {
+  color: var(--lima);
+}
+#login:hover {
+  color: var(--amarillo);
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
+#logout {
+  color: var(--rojo);
+}
+#logout:hover {
+  color: var(--amarillo);
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
 
-/* ------------------------------
+/* -------------------------------------------------
    Botón hamburguesa (móvil)
-   ------------------------------ */
+------------------------------------------------- */
 .boton-hamburguesa {
   display: none;
   background: none;
@@ -62,20 +78,19 @@ nav.menu-container a:hover {
   font-size: 2rem;
   color: var(--blanco);
   cursor: pointer;
+  z-index: 1002; /* encima del header */
 }
 
-/* ------------------------------
-   Panel de navegación móvil
-   (off-canvas desde la derecha)
-   ------------------------------ */
+/* -------------------------------------------------
+   Panel de navegación móvil (off-canvas)
+------------------------------------------------- */
 .panel-navegacion {
   position: fixed;
-  top: var(--altura-header);           /* justo debajo del header */
+  top: var(--altura-header);
   right: 0;
-  width: 60vw;                         /* ancho más pequeño */
-  max-width: 240px;                    /* límite máximo */
+  width: 60vw;
+  max-width: 240px;
   height: calc(100vh - var(--altura-header));
-  /* Fondo con degradado más llamativo */
   background: linear-gradient(
     180deg,
     var(--verdeOscuro) 0%,
@@ -83,7 +98,7 @@ nav.menu-container a:hover {
   );
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  z-index: 1000;
+  z-index: 1002;  /* encima del header */
   padding: 2rem 1rem;
   box-shadow: -4px 0 8px rgba(0,0,0,0.3);
 }
@@ -91,7 +106,9 @@ nav.menu-container a:hover {
   transform: translateX(0);
 }
 
-/* Botón de cierre dentro del panel */
+/* -------------------------------------------------
+   Botón de cierre dentro del panel
+------------------------------------------------- */
 .boton-cerrar-panel {
   position: absolute;
   top: 1rem;
@@ -103,7 +120,9 @@ nav.menu-container a:hover {
   cursor: pointer;
 }
 
-/* Enlaces del panel */
+/* -------------------------------------------------
+   Enlaces del panel
+------------------------------------------------- */
 .panel-navegacion ul {
   list-style: none;
   margin-top: 3rem;
@@ -118,11 +137,11 @@ nav.menu-container a:hover {
   font-size: 1.25rem;
 }
 
-/* ------------------------------
+/* -------------------------------------------------
    Responsive móvil
-   ------------------------------ */
-@media (max-width: 44rem) {
-  /* ocultar menú de escritorio, mostrar hamburguesa */
+------------------------------------------------- */
+@media (max-width: 50rem) {
+  /* Ocultar menú de escritorio, mostrar hamburguesa */
   nav.menu-container {
     display: none;
   }

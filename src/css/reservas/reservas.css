@@ -1,24 +1,56 @@
+@import "../colors.css";
+
+/* -------------------------------------------------
+   Body sin color de fondo: se usará una imagen
+   definida en un CSS global o en header.css
+------------------------------------------------- */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* para empujar footer abajo */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* -------------------------------------------------
+   Contenedor principal: ocupa todo el espacio
+   entre header y footer, centra el contenido
+------------------------------------------------- */
 #content-reservas {
-  flex: 1;
+  flex: 1;                /* empuja footer al final */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; 
   padding: 2rem;
-  background: var(--verdeOscuro);
+  background-image: url("../../../img/login/login-background.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
+
+/* -------------------------------------------------
+   Caja blanca con formularios:
+   - ancho max 600px
+   - box-shadow para destacarlo
+------------------------------------------------- */
 .reservas-container {
   width: 100%;
   max-width: 600px;
-  background: var(--blanco);
   border-radius: 8px;
+  background-color: var(--blanco);
   padding: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Título centrado */
 .reservas-container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
 }
 
+/* -------------------------------------------------
+   Cada grupo de control (label + input/select)
+------------------------------------------------- */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -33,10 +65,29 @@
   box-sizing: border-box;
 }
 
+/* -------------------------------------------------
+   Ocultar el input técnico de Flatpickr
+------------------------------------------------- */
+.flatpickr-input.oculto {
+  display: none;
+}
+
+/* -------------------------------------------------
+   Centrar el calendario inline de Flatpickr
+------------------------------------------------- */
+.calendario-wrapper .flatpickr-calendar.inline {
+  margin: 1rem auto !important;
+  box-shadow: none;
+  border: none;
+}
+
+/* -------------------------------------------------
+   Grid para botones de hora
+------------------------------------------------- */
 .horas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   margin-top: 0.5rem;
 }
 .horas-grid button {
@@ -45,26 +96,36 @@
   background: none;
   cursor: pointer;
   border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
 }
 .horas-grid button:hover,
 .horas-grid button.seleccionada {
   background: var(--amarillo);
-  color: #fff;
+  color: var(--grisClaro);
 }
+
+/* -------------------------------------------------
+   Botón principal
+------------------------------------------------- */
 .btn {
   width: 100%;
   padding: 0.75rem;
   background: var(--amarillo);
-  color: #fff;
+  color: var(--grisClaro);
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
 }
 .btn:disabled {
-  opacity: 0.6;
+  background: var(--amarillo);
+  opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* -------------------------------------------------
+   Mensajes de éxito/error
+------------------------------------------------- */
 .reserva-mensaje {
   text-align: center;
   margin-bottom: 1rem;
@@ -75,4 +136,55 @@
 }
 .reserva-mensaje.success {
   color: var(--verdeClaro);
+}
+
+/* -------------------------------------------------
+   Botones "Guardar cambios" + "Cancelar"
+   alineados lado a lado (en EditarReserva)
+------------------------------------------------- */
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Botón "Cancelar" parecido al .btn pero invertido */
+.btn-cancel {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  background: var(--rojo);
+  color: var(--blanco);
+  border-radius: 4px;
+}
+
+/* -------------------------------------------------
+   Párrafo para mostrar "Fecha de la cita actual"
+------------------------------------------------- */
+.fecha-actual {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+/* -------------------------------------------------
+   Responsive tablets y móviles
+------------------------------------------------- */
+@media (max-width: 768px) {
+  .reservas-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #content-reservas {
+    padding: 1rem;
+  }
+  .reservas-container {
+    padding: 1rem;
+  }
+  .horas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
 }

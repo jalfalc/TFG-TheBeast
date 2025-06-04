@@ -1,31 +1,55 @@
-@import "../colors.css";
+@import "../colors.css"; /* Variables de color en --primary, --blanco, etc. */
 
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
 }
+
+/* El body es flex vertical para que footer quede abajo */
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* altura mínima para ocupar toda la pantalla */;
+  min-height: 100vh;           /* Ocupa toda la altura de la ventana */
   font-family: Arial, sans-serif;
 }
+
+/* --------------------------------------------------
+   Contenedor exterior que aplica el background y
+   centra siempre el interior (.background-overlay)
+   -------------------------------------------------- */
 #content-login, #content-register {
-  flex: 1;
+  flex: 1;                     /* Crece para ocupar todo el espacio vertical */
   display: flex;
-  align-items: center;    /* centra verticalmente */
-  justify-content: center;/* centra horizontalmente */
+  align-items: center;         /* Centra verticalmente */
+  justify-content: center;     /* Centra horizontalmente */
   background-image: url("../../../img/login/login-background.webp");
-background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-  
 
+/* --------------------------------------------------
+   Capa intermedia que ahora también es flex para
+   centrar .login-container y controlar su ancho
+   -------------------------------------------------- */
+.background-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;                 /* Abarca todo el ancho disponible */
+}
 
-.login-container, .register-container {
+/* --------------------------------------------------
+   Caja con el formulario:
+   - ancho máximo para pantallas anchas
+   - altura mínima para que al mostrar errores no crezca
+   -------------------------------------------------- */
+.login-container,
+.register-container {
   width: 100%;
-  max-width: 400px;
+  width: 15%;
+  min-height: 30%;           /* Reservar espacio para mensaje de error */
   padding: 20px;
   border: 1px solid var(--blanco);
   border-radius: 8px;
@@ -34,30 +58,21 @@ background-size: cover;
   text-align: center;
 }
 
-.login-container h2 {
-  text-align: center;
-}
-
-#form-login, #form-register {
-  align-items: center;
-  text-align: center;
-
-}
+/* Separación de form-groups */
 .form-group {
-  margin: 1rem;
+  margin: 1rem 0;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 5px;
 }
-
 .form-group input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
 }
 
+/* Botón azul centrado al 50% del ancho */
 .btn {
   width: 50%;
   padding: 10px;
@@ -68,25 +83,36 @@ background-size: cover;
   cursor: pointer;
 }
 
+/* Enlace a registro */
 .register-link {
-  text-align: center;
   margin-top: 15px;
 }
-
-.register-link a{
-
+.register-link a {
   color: var(--amarillo);
 }
 
+/* --------------------------------------------------
+   Contenedor de error (JS o servidor):
+   - tamaño de fuente reducido
+   - color rojo
+   -------------------------------------------------- */
 #login-error {
   width: 100%;
+  margin-bottom: 0.5rem;
   text-align: center;
-  margin-top: 0.5rem;
-
 }
 .form-error {
-  margin: 1rem;
   font-size: 0.9rem;
   color: var(--rojo);
-  text-align: center;
+}
+
+/* --------------------------------------------------
+   Responsive: en pantallas muy estrechas (móvil),
+   asegurarse de que el contenedor no se achique
+   -------------------------------------------------- */
+@media (max-width: 60rem) {
+  .login-container, .register-container {
+    min-width: 300px;          /* Mantener un ancho mínimo */
+    padding: 15px;         /* Un poquito más alto en móvil */
+  }
 }

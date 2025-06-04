@@ -108,12 +108,15 @@ class MySqlDAO {
      * @return string[] Lista de horas en HH:MM.
      */
     public function getHorasReservadas(string $fecha): array {
-        $sql  = "SELECT hora FROM citas_reservadas WHERE fecha = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(1, $fecha);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_COLUMN);
-    }
+    // Con TIME_FORMAT devolvemos solo hora y minutos
+    $sql  = "SELECT TIME_FORMAT(hora, '%H:%i') AS hora 
+             FROM citas_reservadas 
+             WHERE fecha = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(1, $fecha);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+}
 
     /**
      * Inserta una nueva cita reservada.
@@ -171,19 +174,37 @@ class MySqlDAO {
     }
 
     /**
-     * Devuelve una sola reserva por su ID.
-     *
-     * @param int $reservaId ID de la reserva.
-     * @return array|null Datos de la reserva o null si no existe.
-     */
-    public function getReservaPorId(int $reservaId): ?array {
-        $sql = "SELECT id, servicio, fecha, hora FROM citas_reservadas WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(1, $reservaId, PDO::PARAM_INT);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ?: null;
-    }
+ * Devuelve los datos de una sola reserva por su ID,
+ * valida que pertenezca al usuario activo,
+ * y trae también el nombre y apellidos del cliente.
+ *
+ * @param int $reservaId
+ * @return array{ id:int, usuario_id:int, servicio:string, fecha:string, hora:string, nombre:string, apellidos:string }|null
+ */
+public function getReservaPorId(int $reservaId): ?array {
+    $sql = "
+      SELECT
+        cr.id,
+        cr.usuario_id,
+        cr.servicio,
+        cr.fecha,
+        cr.hora,
+        u.nombre,
+        u.apellidos
+      FROM citas_reservadas AS cr
+      JOIN usuarios AS u
+        ON cr.usuario_id = u.id
+      WHERE cr.id = ?
+        AND cr.usuario_id = ?
+      LIMIT 1
+    ";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(1, $reservaId, PDO::PARAM_INT);
+    $stmt->bindParam(2, $_SESSION['usuario_id'], PDO::PARAM_INT);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row ?: null;
+}
 
     /**
      * Actualiza los datos de una reserva existente.

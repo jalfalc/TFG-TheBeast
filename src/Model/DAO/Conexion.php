@@ -1,26 +1,66 @@
 <?php
-class Conexion{
-    //Creo el constructor "privado" para que no se puedan crear objetos de esta clase, puesto que solo vamos a llamarlo para pedir conexión a nuestra base de datos
-    private function __construct(){
+class Conexion {
+    // Constructor privado para evitar instancias
+    private function __construct() {}
 
+    // Atributos estáticos que llenaremos desde .env vía parse_ini_file()
+    private static $host;
+    private static $dbname;
+    private static $charset;
+    private static $user;
+    private static $password;
+
+    /**
+     * Carga (una vez) las variables desde .env usando parse_ini_file().
+     */
+    private static function cargarEnv(): void
+    {
+        // Si ya están cargadas, salimos
+        if (self::$host !== null) {
+            return;
+        }
+
+        // Ruta al .env de la raiz
+        $rutaEnv = __DIR__ . '/../../../.env';
+
+        if (!file_exists($rutaEnv)) {
+            // Si no existe, podrías lanzar excepción, dejar valores por defecto o terminar
+            throw new RuntimeException("No se encontró el archivo .env en $rutaEnv");
+        }
+
+        // parse_ini_file nos devuelve un array clave=>valor por cada línea CLAVE=valor
+        // usando INI_SCANNER_RAW para que no haga “escapes” automáticos:
+        $env = parse_ini_file($rutaEnv, false, INI_SCANNER_RAW);
+
+        // volcamos en cada variable estática
+        self::$host     = $env['DB_HOST']    ?? 'localhost';
+        self::$dbname   = $env['DB_NAME']    ?? '';
+        self::$charset  = $env['DB_CHARSET'] ?? 'utf8mb4';
+        self::$user     = $env['DB_USER']    ?? '';
+        self::$password = $env['DB_PASSWORD'] ?? '';
     }
-    //Pongo los atributos estáticos porque van a ser usados por un método estático
-    private static $servidor  = "mysql:host=localhost;dbname=thebeastbarber;charset=utf8mb4";
-    private static $user = "admin";
-    private static $password = "admin";
 
-    //Creo método estático para poder ser llamado sin necesidad de crear objetos de tipo "Conexión".
-    public static function getConexion(){
-        try{
-            //Creo la conexión con sus propios atributos estáticos
-            $conexion = new PDO(self::$servidor, self::$user, self::$password);
-            
-            //Esto hace que cualquier error sea lanzado como una excepción
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    /**
+     * Devuelve un PDO configurado con los datos leídos desde .env
+     */
+    public static function getConexion(): PDO
+    {
+        // Nos aseguramos de haber leído .env
+        self::cargarEnv();
 
-            return $conexion;
-        } catch (PDOException $e){ 
-            die("Ha habido un error en la conexión");
+        $dsn = sprintf(
+            'mysql:host=%s;dbname=%s;charset=%s',
+            self::$host,
+            self::$dbname,
+            self::$charset
+        );
+
+        try {
+            $pdo = new PDO($dsn, self::$user, self::$password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        } catch (PDOException $e) {
+            die("Error al conectar con la base de datos." . $e->getMessage());
         }
     }
 }
