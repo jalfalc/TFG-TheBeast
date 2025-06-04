@@ -41,13 +41,12 @@ $mySqlDAO = new MySqlDAO();
 
 // 4. Intentamos registrar
 if ($mySqlDAO->registrarUsuario($usuario)) {
-    // Éxito → principal (o login si prefieres)
-    header("Location: index.php?controlador=Login&action=MisReservas");
+    // Éxito → redirijo a "Mis citas"
+    header("Location: index.php?controlador=MisReservas&action=Mostrar");
     exit();
 } else {
     // Fracaso: correo duplicado u otro error en DAO
-    // Para distinguir, podrías ampliar registrarUsuario() para lanzar excepciones, pero aquí:
-    $msg = "Error en el registro: ese correo ya está registrado";
+    $msg = "Error en el registro. El correo ya está en uso o ha ocurrido un error inesperado.";
     header("Location: index.php?controlador=Login&action=Registro&error_message=" . urlencode($msg));
     exit();
 }

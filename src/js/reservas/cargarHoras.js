@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let horaSel = null;
 
-  // 1) Inicializar Flatpickr:
+  // 1) Inicializar calendario Flatpickr:
   flatpickr(fechaInput, {
     locale: 'es',             // usa traducción al español
     firstDayOfWeek: 1,        // lunes como primer día
@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btnConfirmar.disabled = true;
   }
 
-  // 4) Auto-refresh cada 30s para mantener horas actualizadas
-  setInterval(recargarHoras, 30000);
+  // 4) Auto-refresh cada 3s para mantener horas actualizadas
+  setInterval(recargarHoras, 3000);
 
   // 5) Primera carga de horas (aunque aún no haya fecha/servicio)
   recargarHoras();

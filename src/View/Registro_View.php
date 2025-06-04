@@ -35,14 +35,14 @@
                     <!-- Nombre -->
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ejemplo: Jorge">
+                        <input type="text" id="nombre" name="nombre" placeholder="Máximo 20 caracteres">
                         <small id="error-nombre" class="error"></small>
                     </div>
 
                     <!-- Apellidos -->
                     <div class="form-group">
                         <label for="apellidos">Apellidos:</label>
-                        <input type="text" id="apellidos" name="apellidos" placeholder="Alfonso Alcalde">
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Máximo 30 caracteres">
                         <small id="error-apellidos" class="error"></small>
                     </div>
 
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
                         <input type="tel" id="telefono" name="telefono"
-                            placeholder="Solo teléfono, sin prefijo">
+                            placeholder="Sin prefijo, 9 dígitos">
                         <small id="error-telefono" class="error"></small>
                     </div>
 
@@ -64,7 +64,7 @@
                     <!-- Contraseña -->
                     <div class="form-group">
                         <label for="password">Contraseña:</label>
-                        <input type="password" id="password" name="password" placeholder="Ejemplo: MiC0ntr@senya">
+                        <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres">
                         <small id="error-password" class="error"></small>
                     </div>
 

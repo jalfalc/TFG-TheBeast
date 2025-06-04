@@ -7,74 +7,70 @@ document.addEventListener('DOMContentLoaded', () => {
   const horaOculta   = document.getElementById('hora-seleccionada');
   const btnGuardar   = document.querySelector('#form-editar button[type="submit"]');
 
-  // Valores iniciales en hidden (pueden venir vacíos)
-  let fechaActual = fechaInput.value; // "2025-05-27" o ""
-  let horaActual  = horaOculta.value; // "13:00" o ""
+  // Valores iniciales: nunca habilitado hasta elegir hora
+  let fechaActual = '';
+  let horaActual  = '';
+  btnGuardar.disabled = true;
 
-  // 1) Inicializar Flatpickr INLINE en español
+  // 1) Inicializar calendario Flatpickr INLINE en español
   flatpickr(calendarioEl, {
     inline: true,
     locale: 'es',
     dateFormat: 'Y-m-d',
-    // Impide seleccionar fechas anteriores a hoy
     minDate: 'today',
-    // Preselecciona la fecha de la reserva si existe
-    defaultDate: fechaActual || null,
     onChange(selectedDates, dateStr) {
-      // Sólo cuando el usuario elige un día
-      if (!dateStr) return;
       fechaActual = dateStr;
-      fechaInput.value = fechaActual;
+      fechaInput.value = dateStr;
+      // refrescar horas, pero NO tocar btnGuardar
       cargarHoras();
     }
   });
 
   // 2) Cuando cambie servicio, refrescar horas
-  servicioSel.addEventListener('change', cargarHoras);
+  servicioSel.addEventListener('change', () => {
+    cargarHoras();
+  });
 
-  // 3) Función para pedir al servidor y pintar horas libres
+  // 3) Carga de horas disponibles
   async function cargarHoras() {
-    // Limpiar estado previo
+    // limpiar grid y estado de hora/submit
     horasCont.innerHTML = '';
-    horaOculta.value   = '';
+    horaOculta.value = '';
+    horaActual = '';
     btnGuardar.disabled = true;
 
-    if (!fechaActual || !servicioSel.value) return;
+    if (!servicioSel.value || !fechaInput.value) {
+      return;
+    }
 
     const res = await fetch(
       `index.php?controlador=Reservas&action=Horas` +
-      `&fecha=${fechaActual}` +
+      `&fecha=${encodeURIComponent(fechaInput.value)}` +
       `&servicio=${encodeURIComponent(servicioSel.value)}`
     );
     if (!res.ok) return;
-
     const { horas } = await res.json();
+
     horas.forEach(h => {
       const btn = document.createElement('button');
-      btn.type        = 'button';
-      btn.textContent = h;
+      btn.type         = 'button';
+      btn.textContent  = h;
       btn.dataset.hora = h;
 
-      // Si coincide con la hora antigua, márcala
-      if (h === horaActual) {
-        btn.classList.add('seleccionada');
-      }
-
       btn.addEventListener('click', () => {
+        // desmarcar cualquier otro
         horasCont.querySelector('button.seleccionada')
-                ?.classList.remove('seleccionada');
+          ?.classList.remove('seleccionada');
+        // marcar este
         btn.classList.add('seleccionada');
+
+        // guardar hora y habilitar submit
         horaOculta.value = h;
-        horaActual      = h;
+        horaActual = h;
         btnGuardar.disabled = false;
       });
 
       horasCont.appendChild(btn);
     });
-  }
-
-  // 4) Carga inicial: si ya existía fecha y servicio
-  if (fechaActual && servicioSel.value) {
-    cargarHoras();
   }
 });

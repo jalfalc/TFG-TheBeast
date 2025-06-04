@@ -35,10 +35,13 @@
         <div class="form-group">
           <label for="servicio">Servicio:</label>
           <select id="servicio" name="servicio" required>
-            <option value="">-- Elige un servicio --</option>
-            <option value="Corte clásico">Corte clásico</option>
-            <option value="Degradado">Degradado</option>
-            <option value="Barba">Barba</option>
+            <option value="" disabled selected>Elige un servicio</option>
+            <option value="Corte de pelo">Corte de pelo</option>
+            <option value="Corte de Barba">Corte de Barba</option>
+            <option value="Corte de pelo y barba">Corte de pelo y barba</option>
+            <option value="Corte de pelo para jubilados">Corte de pelo para jubilados</option>
+            <option value="Perfilado de cejas">Perfilado de cejas</option>
+            <option value="Limpieza facial con efecto lifting">Limpieza facial con efecto lifting</option>
           </select>
         </div>
 
@@ -81,5 +84,6 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
   <!-- nuestro loader de horas -->
   <script src="js/reservas/cargarHoras.js"></script>
+  
 </body>
 </html>

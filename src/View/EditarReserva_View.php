@@ -39,16 +39,25 @@
           </p>
         </div>
 
-        <!-- 2) Selector de servicio -->
+        <!-- 1.1) Mostrar el servicio actual justo debajo -->
+        <div class="form-group">
+          <label>Servicio de la cita actual:</label>
+          <p class="fecha-actual">
+            <?= htmlspecialchars($reserva['servicio']) ?>
+          </p>
+        </div>
+
+        <!-- 2) Selector de servicio (para elegir uno nuevo) -->
         <div class="form-group">
           <label for="servicio">Servicio:</label>
           <select id="servicio" name="servicio" required>
-            <?php foreach (['Corte clásico','Degradado','Barba'] as $s): ?>
-              <option value="<?= $s ?>"
-                <?= $s === $reserva['servicio'] ? 'selected' : '' ?>>
-                <?= htmlspecialchars($s) ?>
-              </option>
-            <?php endforeach; ?>
+            <option value="">-- Elige un servicio --</option>
+            <option value="Corte clásico">Corte de pelo</option>
+            <option value="Corte de Barba">Corte de Barba</option>
+            <option value="Corte de pelo y barba">Corte de pelo y barba</option>
+            <option value="Corte de pelo para jubilados">Corte de pelo para jubilados</option>
+            <option value="Perfilado de cejas">Perfilado de cejas</option>
+            <option value="Limpieza facial con efecto lifting">Limpieza facial con efecto lifting</option>
           </select>
         </div>
 
@@ -67,7 +76,8 @@
 
         <!-- 5) Botones alineados -->
         <div class="form-buttons">
-          <button type="submit" class="btn">Guardar cambios</button>
+          <!-- Deshabilitado inicialmente -->
+          <button type="submit" class="btn" disabled>Guardar cambios</button>
           <a href="index.php?controlador=MisReservas" class="btn btn-cancel">Cancelar</a>
         </div>
       </form>

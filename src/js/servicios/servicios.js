@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Rellenar título, detalles, duración e incluye
       tituloModal.textContent      = servicioSeleccionado.titulo;
       descripcionModal.textContent = servicioSeleccionado.detalles;
-      duracionModal.textContent    = '30 minutos.';  // Valor fijo o podría venir del objeto
+      duracionModal.textContent    = '30 minutos.';  // Valor fijo, todos los servicios tienen la misma duración
       incluyeModal.textContent     = servicioSeleccionado.incluye;
       // Mostrar el modal
       modalInfoServicio.classList.add('open');

@@ -140,7 +140,7 @@ nav.menu-container a:hover {
 /* -------------------------------------------------
    Responsive móvil
 ------------------------------------------------- */
-@media (max-width: 44rem) {
+@media (max-width: 50rem) {
   /* Ocultar menú de escritorio, mostrar hamburguesa */
   nav.menu-container {
     display: none;

@@ -4,6 +4,7 @@ require_once 'Model/DAO/MySqlDAO.php';
 
 class Reservas_Controller {
   private $dao;
+
   public function __construct(){
     if (empty($_SESSION['loged'])) {
       header('Location: index.php?controlador=Login&action=Login');
@@ -64,35 +65,50 @@ class Reservas_Controller {
     $fecha     = $_POST['fecha']    ?? '';
     $hora      = $_POST['hora']     ?? '';
 
-    // 1) Validar que vengan todos los datos
+    // 0) Definir listado “oficial” de servicios
+    $serviciosValidos = [
+      "Corte de pelo",
+      "Corte de Barba",
+      "Corte de pelo y barba",
+      "Corte de pelo para jubilados",
+      "Perfilado de cejas",
+      "Limpieza facial con efecto lifting"
+    ];
+
+    // 1) Validar que el servicio enviado esté en la lista de servicios permitidos
+    if (!in_array($servicio, $serviciosValidos, true)) {
+      $_SESSION['error_reserva'] = 'Error: el servicio seleccionado no existe.';
+      header('Location: index.php?controlador=Reservas&action=Mostrar');
+      exit();
+    }
+
+    // 2) Validar que vengan todos los datos
     if (!$servicio || !$fecha || !$hora) {
-        $_SESSION['error_reserva'] = 'Falta elegir servicio, fecha u hora.';
-        header('Location: index.php?controlador=Reservas&action=Mostrar');
-        exit();
+      $_SESSION['error_reserva'] = 'Falta elegir servicio, fecha u hora.';
+      header('Location: index.php?controlador=Reservas&action=Mostrar');
+      exit();
     }
 
-    // 2) Intentar reservar en base de datos
+    // 3) Intentar reservar en base de datos
     if ($this->dao->reservarCita($uid, $servicio, $fecha, $hora)) {
-        // 3) Reformatear la fecha a DD-MM-YYYY para el mensaje
-        $dt = DateTime::createFromFormat('Y-m-d', $fecha);
-        // Si la creación falla, se conserva el formato original
-        if ($dt !== false) {
-            $fechaFormateada = $dt->format('d-m-Y');
-        } else {
-            $fechaFormateada = $fecha;
-        }
-
-        // 4) Mensaje de éxito con formato “día-mes-año”
-        $_SESSION['success_reserva'] = 
-            "Cita para {$fechaFormateada} a las {$hora} confirmada.";
+      // Reformatear la fecha a DD-MM-YYYY para el mensaje
+      $dt = DateTime::createFromFormat('Y-m-d', $fecha);
+      if ($dt !== false) {
+        $fechaFormateada = $dt->format('d-m-Y');
+      } else {
+        $fechaFormateada = $fecha;
+      }
+      // Mensaje de éxito con formato “día-mes-año”
+      $_SESSION['success_reserva'] =
+        "Cita para {$fechaFormateada} a las {$hora} confirmada.";
     } else {
-        $_SESSION['error_reserva'] = 'Lo siento, esa hora ya no está disponible.';
+      $_SESSION['error_reserva'] = 'Lo siento, esa hora ya no está disponible.';
     }
 
-    // 5) Redirigir de nuevo al formulario
+    // 4) Redirigir de nuevo al formulario
     header('Location: index.php?controlador=Reservas&action=Mostrar');
     exit();
-}
+  }
 }
 
 // router interno

@@ -101,7 +101,7 @@ body {
 .horas-grid button:hover,
 .horas-grid button.seleccionada {
   background: var(--amarillo);
-  color: #fff;
+  color: var(--grisClaro);
 }
 
 /* -------------------------------------------------
@@ -111,14 +111,15 @@ body {
   width: 100%;
   padding: 0.75rem;
   background: var(--amarillo);
-  color: #fff;
+  color: var(--grisClaro);
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
 }
 .btn:disabled {
-  opacity: 0.6;
+  background: var(--amarillo);
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -153,15 +154,9 @@ body {
   display: inline-block;
   text-decoration: none;
   padding: 0.75rem 1.5rem;
-  background: transparent;
-  color: var(--rojo);
-  border: 1px solid var(--rojo);
-  border-radius: 4px;
-  transition: background 0.2s, color 0.2s;
-}
-.btn-cancel:hover {
   background: var(--rojo);
-  color: #fff;
+  color: var(--blanco);
+  border-radius: 4px;
 }
 
 /* -------------------------------------------------

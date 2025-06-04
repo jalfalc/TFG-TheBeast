@@ -1,4 +1,3 @@
-// js/reservas/eliminarReserva.js
 document.addEventListener('DOMContentLoaded', () => {
   // Selecciona todos los formularios de eliminación
   document.querySelectorAll('.form-eliminar').forEach(form => {

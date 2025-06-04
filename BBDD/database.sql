@@ -1,17 +1,22 @@
--- Create the database
-CREATE DATABASE TheBeastBarber;
+-- Crear la base de datos
+CREATE DATABASE thebeastbarber;
 
--- Create the admin user
-CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
+-- Crear usuario 'admin' que puede conectarse en local
+CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'admin';
 
--- Grant all privileges on the database to the admin user
-GRANT ALL PRIVILEGES ON TheBeastBarber.* TO 'admin'@'%';
+-- Darle solo SELECT, INSERT, UPDATE y DELETE sobre todas las tablas de TheBeastBarber y aplicar privilegios
+GRANT
+  SELECT,
+  INSERT,
+  UPDATE,
+  DELETE
+ON thebeastbarber.* TO 'admin'@'localhost';
 FLUSH PRIVILEGES;
 
--- Switch to the new database
-USE TheBeastBarber;
+-- Acceder a la base de datos
+USE thebeastbarber;
 
--- Create the Usuarios table
+-- Tabla usuarios
 CREATE TABLE usuarios (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(20) NOT NULL,
@@ -21,19 +26,16 @@ CREATE TABLE usuarios (
   contrasenia VARCHAR(255) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY unique_correo (correo)
-) ENGINE=InnoDB
-  AUTO_INCREMENT=1
-  DEFAULT CHARSET=utf8mb4;
+) DEFAULT CHARSET=utf8mb4;
 
--- Solo guardamos las reservas confirmadas
+-- Tabla citas_reservadas
 CREATE TABLE citas_reservadas (
   id INT NOT NULL AUTO_INCREMENT,
   usuario_id INT       NOT NULL,
   servicio   VARCHAR(50) NOT NULL,
   fecha      DATE      NOT NULL,
   hora       TIME      NOT NULL,
-  creado_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY uq_reserva (fecha, hora),
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
-);
+) DEFAULT CHARSET=utf8mb4;
