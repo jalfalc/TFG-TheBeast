@@ -55,10 +55,15 @@
                 </td>
                 <td class="acciones">
                   <!-- Enlace para modificar -->
-                  <a
-                    href="index.php?controlador=MisReservas&action=Modificar&id=<?= $r['id'] ?>"
-                    class="btn-modificar"
-                  >Modificar</a>
+                  <form
+                    method="post"
+                    action="index.php?controlador=MisReservas&action=Modificar"
+                    class="form-modificar"
+                    style="display:inline"
+                  >
+                    <input type="hidden" name="id" value="<?= $r['id'] ?>">
+                    <button type="submit" class="btn-modificar">Modificar</button>
+                  </form>
 
                   <!-- Botón para eliminar (confirm en JS) -->
                   <form

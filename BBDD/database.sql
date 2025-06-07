@@ -21,7 +21,7 @@ CREATE TABLE usuarios (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(20) NOT NULL,
   apellidos VARCHAR(30) NOT NULL,
-  telefono BIGINT,
+  telefono BIGINT NOT NULL,
   correo VARCHAR(50) NOT NULL,
   contrasenia VARCHAR(255) NOT NULL,
   PRIMARY KEY (id),

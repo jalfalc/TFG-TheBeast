@@ -60,7 +60,7 @@ class Conexion {
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         } catch (PDOException $e) {
-            die("Error al conectar con la base de datos." . $e->getMessage());
+            die("Ha ocurrido un error en la conexión." . $e->getMessage() . "<a href='index.php' style='color:red;'>Volver</a>");
         }
     }
 }

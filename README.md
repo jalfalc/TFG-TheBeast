@@ -1,8 +1,7 @@
 # TFG-TheBeast
+Bienvenidos a mi proyecto de fin de grado: The Beast Barber.
+Este proyecto se basa en la creación de un sitio web para una peluquería, con un sistema de gestión de citas.
 
-
-## Dificultades
-
-1. Rutas a los diferentes archivos (CSS, imagenes, javascript...) al ser llamados desde index.php la ruta ya no es la misma y he tenido problemas con ello.
-2. Problemas al "linkar" servicios.css en la página de "Servicios". 
-3. No me lo cogía correctamente y he tenido que usar
+- Para desplegar el proyecto consulte el manual de de administración (documentacion\manuales\ManualAdministracion_TheBeastBarber_JorgeAlfonsoAlcalde.pdf).
+  
+- Para ver una guía sobre la navegación y funcionamiento del sitio web consulte el manual de usuario (documentacion\manuales\ManualUsuario_TheBeastBarber_JorgeAlfonsoAlcalde.pdf)

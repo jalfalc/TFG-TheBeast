@@ -101,10 +101,15 @@ body {
 }
 
 /* ==============================================
-   Mensajes flash centrados en verde
+   Mensajes flash centrados 
    ============================================== */
 .reserva-mensaje.success {
   color: var(--verdeClaro);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.reserva-mensaje.error {
+  color: var(--rojo);
   text-align: center;
   margin-bottom: 1rem;
 }

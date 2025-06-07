@@ -1,76 +1,133 @@
 // js/reservas/editarReserva.js
-document.addEventListener('DOMContentLoaded', () => {
-  const calendarioEl = document.getElementById('calendario');
-  const fechaInput   = document.getElementById('fecha');
-  const servicioSel  = document.getElementById('servicio');
-  const horasCont    = document.getElementById('horas-disponibles');
-  const horaOculta   = document.getElementById('hora-seleccionada');
-  const btnGuardar   = document.querySelector('#form-editar button[type="submit"]');
 
-  // Valores iniciales: nunca habilitado hasta elegir hora
-  let fechaActual = '';
-  let horaActual  = '';
+/**
+ * Este script gestiona la carga y visualización de las horas disponibles
+ * cuando el usuario edita una cita.
+ *
+ * - Inicializa Flatpickr en modo inline para escoger fecha.
+ * - Al cambiar fecha o servicio, pide al servidor las horas libres.
+ * - Si la fecha elegida es hoy, filtra las horas anteriores a la hora actual.
+ * - Mantiene seleccionada la hora previa si sigue disponible tras cada recarga.
+ * - Muestra cada hora como botón; al hacer clic en uno, habilita “Guardar cambios”.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 1) Referencias al DOM:
+  const calendarioEl       = document.getElementById('calendario');
+  const fechaInput         = document.getElementById('fecha');
+  const servicioSel        = document.getElementById('servicio');
+  const horasCont          = document.getElementById('horas-disponibles');
+  const horaOculta         = document.getElementById('hora-seleccionada');
+  const btnGuardar         = document.querySelector('#form-editar button[type="submit"]');
+
+  // 2) Variable interna que almacena la hora preseleccionada (si hubiese)
+  let horaSeleccionadaInterna = null;
+
+  // 3) Al cargar la página, “Guardar cambios” siempre disabled hasta escoger hora:
   btnGuardar.disabled = true;
 
-  // 1) Inicializar calendario Flatpickr INLINE en español
+  // 4) Inicializar Flatpickr en modo inline:
   flatpickr(calendarioEl, {
     inline: true,
     locale: 'es',
     dateFormat: 'Y-m-d',
     minDate: 'today',
     onChange(selectedDates, dateStr) {
-      fechaActual = dateStr;
+      // Cuando cambies la fecha:
       fechaInput.value = dateStr;
-      // refrescar horas, pero NO tocar btnGuardar
-      cargarHoras();
+      cargarHoras(); // recargar horas disponibles
     }
   });
 
-  // 2) Cuando cambie servicio, refrescar horas
+  // 5) Cuando cambie el select de servicio, recargar horas también:
   servicioSel.addEventListener('change', () => {
     cargarHoras();
   });
 
-  // 3) Carga de horas disponibles
+  /**
+   * Función que solicita al servidor horas libres para la fecha/servicio actual,
+   * filtra las horas anteriores si la fecha es hoy y pinta los botones.
+   * Además, mantiene seleccionada una hora previa si aún sigue disponible.
+   */
   async function cargarHoras() {
-    // limpiar grid y estado de hora/submit
-    horasCont.innerHTML = '';
-    horaOculta.value = '';
-    horaActual = '';
-    btnGuardar.disabled = true;
+    // 5.a) Recordar qué hora estaba marcada antes (para intentar mantenerla)
+    const horaPrevia = horaSeleccionadaInterna;
 
-    if (!servicioSel.value || !fechaInput.value) {
+    // 5.b) Resetar contenedor y estado de “Guardar cambios”
+    horasCont.innerHTML = '';
+    horaOculta.value     = '';
+    horaSeleccionadaInterna = null;
+    btnGuardar.disabled  = true;
+
+    // 5.c) Leer fecha y servicio elegidos
+    const fechaSel   = fechaInput.value;
+    const servicio   = servicioSel.value;
+    if (!fechaSel || !servicio) {
+      // Si falta alguno, no pedimos nada
       return;
     }
 
-    const res = await fetch(
+    // 5.d) Hacer la petición AJAX al controlador Reservas→Horas
+    const respuesta = await fetch(
       `index.php?controlador=Reservas&action=Horas` +
-      `&fecha=${encodeURIComponent(fechaInput.value)}` +
-      `&servicio=${encodeURIComponent(servicioSel.value)}`
+      `&fecha=${encodeURIComponent(fechaSel)}` +
+      `&servicio=${encodeURIComponent(servicio)}`
     );
-    if (!res.ok) return;
-    const { horas } = await res.json();
+    if (!respuesta.ok) return;
 
-    horas.forEach(h => {
-      const btn = document.createElement('button');
-      btn.type         = 'button';
-      btn.textContent  = h;
-      btn.dataset.hora = h;
+    // 5.e) Extraer el array de horas libres (["09:00", "09:30", ...])
+    let listaHoras = (await respuesta.json()).horas;
 
-      btn.addEventListener('click', () => {
-        // desmarcar cualquier otro
-        horasCont.querySelector('button.seleccionada')
-          ?.classList.remove('seleccionada');
-        // marcar este
-        btn.classList.add('seleccionada');
+    // 5.f) Si la fecha seleccionada es hoy, filtrar las horas anteriores a la hora actual:
+    const ahora  = new Date();
+    const año    = String(ahora.getFullYear());
+    const mes    = String(ahora.getMonth() + 1).padStart(2, '0');
+    const dia    = String(ahora.getDate()).padStart(2, '0');
+    const fechaHoy = `${año}-${mes}-${dia}`; // ej. "2025-06-06"
 
-        // guardar hora y habilitar submit
-        horaOculta.value = h;
-        horaActual = h;
-        btnGuardar.disabled = false;
+    if (fechaSel === fechaHoy) {
+      const horaActual   = String(ahora.getHours()).padStart(2, '0');
+      const minutoActual = String(ahora.getMinutes()).padStart(2, '0');
+      const marcaTiempo  = `${horaActual}:${minutoActual}`; // ej. "17:32"
+      listaHoras = listaHoras.filter(hora => hora >= marcaTiempo);
+    }
+
+    // 5.g) Comprobar si la hora previa sigue disponible
+    const sigueDisponible = listaHoras.includes(horaPrevia);
+
+    // 5.h) Pintar un botón por cada hora en listaHoras
+    listaHoras.forEach(hora => {
+      const botonHora = document.createElement('button');
+      botonHora.type         = 'button';
+      botonHora.textContent  = hora;
+      botonHora.dataset.hora = hora;
+
+      // Si coincide con la hora previa, marcarlo “seleccionada”
+      if (hora === horaPrevia) {
+        botonHora.classList.add('seleccionada');
+        horaSeleccionadaInterna = horaPrevia;
+        horaOculta.value = horaPrevia;
+      }
+
+      // Al hacer clic en un botón de hora:
+      botonHora.addEventListener('click', () => {
+        const previoBtn = horasCont.querySelector('button.seleccionada');
+        if (previoBtn) {
+          previoBtn.classList.remove('seleccionada');
+        }
+        botonHora.classList.add('seleccionada');
+        horaSeleccionadaInterna = hora;
+        horaOculta.value        = hora;
+        btnGuardar.disabled     = false;
       });
 
-      horasCont.appendChild(btn);
+      horasCont.appendChild(botonHora);
     });
+
+    // 5.i) Si la hora previa sigue libre, dejamos “Guardar cambios” habilitado
+    if (sigueDisponible) {
+      btnGuardar.disabled = false;
+    }
+    // Si no sigue disponible, ya se quedó disabled arriba
   }
 });
