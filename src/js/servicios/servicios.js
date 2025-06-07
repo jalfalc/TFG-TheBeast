@@ -24,8 +24,9 @@ const servicios = [
     descripcion: "Corte con tijeras/máquina según el estilo buscado.",
     precio: "8,50€",
     imagen: "../img/servicios/servicio1.png",
-    detalles: "Nuestro corte de pelo incluye lavado, corte con tijeras y/o máquina, degradado personalizado y peinado. Incluye cualquier tipo de corte.",
-    incluye: "Lavado + Corte con tijeras/máquina + Degradado + Peinado"
+    detalles:
+      "Nuestro corte de pelo incluye lavado, corte con tijeras y/o máquina, degradado personalizado y peinado. Incluye cualquier tipo de corte.",
+    incluye: "Lavado + Corte con tijeras/máquina + Degradado + Peinado",
   },
   {
     id: 2,
@@ -33,8 +34,9 @@ const servicios = [
     descripcion: "Perfilado y tratamiento completo para tu barba.",
     precio: "7€",
     imagen: "../img/servicios/barba.png",
-    detalles: "Recortamos, perfilamos con precisión a navaja y aplicamos aceite nutritivo para suavizar y proteger la piel.",
-    incluye: "Recorte + Perfilado a navaja + Aceite nutritivo"
+    detalles:
+      "Recortamos, perfilamos con precisión a navaja y aplicamos aceite nutritivo para suavizar y proteger la piel.",
+    incluye: "Recorte + Perfilado a navaja + Aceite nutritivo",
   },
   {
     id: 3,
@@ -42,8 +44,9 @@ const servicios = [
     descripcion: "Oferta especial de corte de pelo + arreglo de barba.",
     precio: "13€",
     imagen: "../img/servicios/corte&barba.png",
-    detalles: "Disfruta de un servicio completo: lavado, corte, degradado y perfilado de barba con masaje facial relajante, disfrutando de un pequeño descuento.",
-    incluye: "Lavado + Corte + Perfilado de barba + Masaje facial"
+    detalles:
+      "Disfruta de un servicio completo: lavado, corte, degradado y perfilado de barba con masaje facial relajante, disfrutando de un pequeño descuento.",
+    incluye: "Lavado + Corte + Perfilado de barba + Masaje facial",
   },
   {
     id: 4,
@@ -51,8 +54,9 @@ const servicios = [
     descripcion: "Corte preciso y cómodo para mayores.",
     precio: "6,50€",
     imagen: "../img/servicios/jubilado.png",
-    detalles: "Requisito imprescindible: presentar documento que demuestre el estado de jubilación.",
-    incluye: "Corte con máquina + Peinado + Lavado"
+    detalles:
+      "Requisito imprescindible: presentar documento que demuestre el estado de jubilación.",
+    incluye: "Corte con máquina + Peinado + Lavado",
   },
   {
     id: 5,
@@ -60,8 +64,9 @@ const servicios = [
     descripcion: "Cuchilla y pinza para una mirada definida.",
     precio: "6€",
     imagen: "../img/servicios/cejas.jpg",
-    detalles: "Perfilamos con cuchilla de precisión y nitidez, retiramos vello sobrante con pinza y aplicamos bálsamo calmante.",
-    incluye: "Cuchilla + Pinza + Bálsamo calmante"
+    detalles:
+      "Perfilamos con cuchilla de precisión y nitidez, retiramos vello sobrante con pinza y aplicamos bálsamo calmante.",
+    incluye: "Cuchilla + Pinza + Bálsamo calmante",
   },
   {
     id: 6,
@@ -69,9 +74,10 @@ const servicios = [
     descripcion: "Revitaliza tu piel y relaja tu mente.",
     precio: "15€",
     imagen: "../img/servicios/limpiezafacial.avif",
-    detalles: "Incluye exfoliación, masaje con rodillo de jade y mascarilla reafirmante que deja la piel radiante.",
-    incluye: "Exfoliación + Masaje de jade + Mascarilla reafirmante"
-  }
+    detalles:
+      "Incluye exfoliación, masaje con rodillo de jade y mascarilla reafirmante que deja la piel radiante.",
+    incluye: "Exfoliación + Masaje de jade + Mascarilla reafirmante",
+  },
 ];
 
 /*
@@ -83,12 +89,48 @@ const servicios = [
     - imagen: ruta relativa a la foto del cliente
 */
 const testimonios = [
-  { id: 1, nombre: "Carlos Martínez", comentario: "El mejor lugar para un corte de pelo en la ciudad. Profesionales y ambiente increíble.", imagen: "../img/servicios/opinion1.jpg" },
-  { id: 2, nombre: "Alejandro López", comentario: "Siempre salgo satisfecho. El fade que me hacen es perfecto y dura semanas.", imagen: "../img/servicios/opinion2.webp" },
-  { id: 3, nombre: "Miguel Sánchez", comentario: "Excelente servicio y atención. El tratamiento de barba es espectacular.", imagen: "../img/servicios/opinion3.jpg" },
-  { id: 4, nombre: "Luis Gutiérrez", comentario: "Me encanta su atención al detalle. ¡Mi cabello nunca había lucido tan bien!", imagen: "../img/servicios/opinion4.jpg" },
-  { id: 5, nombre: "Raúl Torres", comentario: "El ambiente es inmejorable y los resultados siempre superan mis expectativas.", imagen: "../img/servicios/opinion5.png" },
-  { id: 6, nombre: "Juan Fernández", comentario: "Profesionales y amables. El trato fue excelente y el corte espectacular.", imagen: "../img/servicios/opinion6.jpg" }
+  {
+    id: 1,
+    nombre: "Carlos Martínez",
+    comentario:
+      "El mejor lugar para un corte de pelo en la ciudad. Profesionales y ambiente increíble.",
+    imagen: "../img/servicios/opinion1.jpg",
+  },
+  {
+    id: 2,
+    nombre: "Alejandro López",
+    comentario:
+      "Siempre salgo satisfecho. El fade que me hacen es perfecto y dura semanas.",
+    imagen: "../img/servicios/opinion2.webp",
+  },
+  {
+    id: 3,
+    nombre: "Miguel Sánchez",
+    comentario:
+      "Excelente servicio y atención. El tratamiento de barba es espectacular.",
+    imagen: "../img/servicios/opinion3.jpg",
+  },
+  {
+    id: 4,
+    nombre: "Luis Gutiérrez",
+    comentario:
+      "Me encanta su atención al detalle. ¡Mi cabello nunca había lucido tan bien!",
+    imagen: "../img/servicios/opinion4.jpg",
+  },
+  {
+    id: 5,
+    nombre: "Raúl Torres",
+    comentario:
+      "El ambiente es inmejorable y los resultados siempre superan mis expectativas.",
+    imagen: "../img/servicios/opinion5.png",
+  },
+  {
+    id: 6,
+    nombre: "Juan Fernández",
+    comentario:
+      "Profesionales y amables. El trato fue excelente y el corte espectacular.",
+    imagen: "../img/servicios/opinion6.jpg",
+  },
 ];
 
 // ---------------------------------------------------------
@@ -99,18 +141,18 @@ const testimonios = [
   Se espera a que el DOM esté completamente cargado
   para empezar a crear e insertar los elementos dinámicos.
 */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   // -------------------------------------------------------
   // Generación dinámica de tarjetas de servicios
   // -------------------------------------------------------
   // 2.1. Selección del contenedor donde irán las tarjetas
-  const contenedorServicios = document.querySelector('.grid-servicios');
+  const contenedorServicios = document.querySelector(".grid-servicios");
 
   // 2.2. Iteración sobre cada servicio del array
-  servicios.forEach(servicio => {
+  servicios.forEach((servicio) => {
     // 2.2.1. Creación de un elemento DIV para la tarjeta
-    const tarjeta = document.createElement('div');
-    tarjeta.className = 'servicio-card';
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "servicio-card";
 
     // 2.2.2. Definición del HTML interno de la tarjeta
     tarjeta.innerHTML = `
@@ -136,13 +178,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Generación dinámica de tarjetas de testimonios
   // -------------------------------------------------------
   // 3.1. Selección del contenedor de testimonios
-  const contenedorTestimonios = document.querySelector('.grid-testimonios');
+  const contenedorTestimonios = document.querySelector(".grid-testimonios");
 
   // 3.2. Iteración sobre cada testimonio del array
-  testimonios.forEach(testimonio => {
+  testimonios.forEach((testimonio) => {
     // 3.2.1. Creación de la tarjeta de testimonio
-    const tarjeta = document.createElement('div');
-    tarjeta.className = 'testimonio-card';
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "testimonio-card";
 
     // 3.2.2. Construcción del contenido HTML de la tarjeta
     tarjeta.innerHTML = `
@@ -174,12 +216,14 @@ document.addEventListener('DOMContentLoaded', () => {
       - incluyeModal: elemento span con la lista de lo que incluye
       - botonCerrarModal: botón para cerrar el modal
   */
-  const modalInfoServicio = document.getElementById('modal-informacion-servicio');
-  const tituloModal       = document.getElementById('titulo-modal');
-  const descripcionModal  = document.getElementById('descripcion-modal');
-  const duracionModal     = document.getElementById('duracion-modal');
-  const incluyeModal      = document.getElementById('incluye-modal');
-  const botonCerrarModal  = document.getElementById('boton-cerrar-modal');
+  const modalInfoServicio = document.getElementById(
+    "modal-informacion-servicio"
+  );
+  const tituloModal = document.getElementById("titulo-modal");
+  const descripcionModal = document.getElementById("descripcion-modal");
+  const duracionModal = document.getElementById("duracion-modal");
+  const incluyeModal = document.getElementById("incluye-modal");
+  const botonCerrarModal = document.getElementById("boton-cerrar-modal");
 
   // -------------------------------------------------------
   // Apertura del modal al pulsar "Más información"
@@ -191,16 +235,18 @@ document.addEventListener('DOMContentLoaded', () => {
       2. Se actualizan los contenidos del modal con los datos del servicio
       3. Se muestra el modal añadiendo la clase 'open'
   */
-  document.querySelectorAll('.servicio-info-btn').forEach(boton => {
-    boton.addEventListener('click', () => {
-      const servicioSeleccionado = servicios.find(s => s.id == boton.dataset.id);
+  document.querySelectorAll(".servicio-info-btn").forEach((boton) => {
+    boton.addEventListener("click", () => {
+      const servicioSeleccionado = servicios.find(
+        (s) => s.id == boton.dataset.id
+      );
       // Rellenar título, detalles, duración e incluye
-      tituloModal.textContent      = servicioSeleccionado.titulo;
+      tituloModal.textContent = servicioSeleccionado.titulo;
       descripcionModal.textContent = servicioSeleccionado.detalles;
-      duracionModal.textContent    = '30 minutos.';  // Valor fijo, todos los servicios tienen la misma duración
-      incluyeModal.textContent     = servicioSeleccionado.incluye;
+      duracionModal.textContent = "30 minutos."; // Valor fijo, todos los servicios tienen la misma duración
+      incluyeModal.textContent = servicioSeleccionado.incluye;
       // Mostrar el modal
-      modalInfoServicio.classList.add('open');
+      modalInfoServicio.classList.add("open");
     });
   });
 
@@ -211,12 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
     1. Botón de cierre: al pulsar se quita la clase 'open'
     2. Click fuera del contenido: si el target es el overlay, también cierra
   */
-  botonCerrarModal.addEventListener('click', () => {
-    modalInfoServicio.classList.remove('open');
+  botonCerrarModal.addEventListener("click", () => {
+    modalInfoServicio.classList.remove("open");
   });
-  modalInfoServicio.addEventListener('click', event => {
+  modalInfoServicio.addEventListener("click", (event) => {
     if (event.target === modalInfoServicio) {
-      modalInfoServicio.classList.remove('open');
+      modalInfoServicio.classList.remove("open");
     }
   });
 });

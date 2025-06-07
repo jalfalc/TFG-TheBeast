@@ -58,7 +58,7 @@ class MisReservas_Controller {
      * Muestra el formulario de edición para una reserva específica.
      */
     public function Modificar() {
-    $id = (int)($_GET['id'] ?? 0);
+    $id = (int)($_POST['id'] ?? 0);
     if (!$id) {
         $this->redirectMostrar();
     }
@@ -89,26 +89,44 @@ class MisReservas_Controller {
      * Procesa el envío del formulario de edición de reserva.
      */
     public function Actualizar() {
-        $id       = (int)($_POST['id'] ?? 0);
-        $servicio = trim($_POST['servicio'] ?? '');
-        $fecha    = trim($_POST['fecha'] ?? '');
-        $hora     = trim($_POST['hora'] ?? '');
+    $id       = (int)($_POST['id'] ?? 0);
+    $servicio = trim($_POST['servicio'] ?? '');
+    $fecha    = trim($_POST['fecha'] ?? '');
+    $hora     = trim($_POST['hora'] ?? '');
 
-        // Validación básica
-        if (!$id || !$servicio || !$fecha || !$hora) {
-            $_SESSION['error_reserva'] = 'Todos los campos son obligatorios';
-            header("Location: index.php?controlador=MisReservas&action=Modificar&id=$id");
-            exit();
-        }
+    // 0) Lista “oficial” de servicios permitidos (idéntica a la de Reservar)
+    $serviciosValidos = [
+      "Corte de pelo",
+      "Corte de Barba",
+      "Corte de pelo y barba",
+      "Corte de pelo para jubilados",
+      "Perfilado de cejas",
+      "Limpieza facial con efecto lifting"
+    ];
 
-        // Intentar actualizar
-        if ($this->dao->actualizarCita($id, $servicio, $fecha, $hora)) {
-            $_SESSION['success_reserva'] = 'Reserva modificada correctamente';
-        } else {
-            $_SESSION['error_reserva'] = 'No se pudo modificar la reserva';
-        }
-        $this->redirectMostrar();
+    // 0.a) Validar que el servicio que llegó en POST esté en nuestro array
+    if (!in_array($servicio, $serviciosValidos, true)) {
+        $_SESSION['error_reserva'] = 'Error: el servicio seleccionado no existe.';
+        // volver a Mostrar para que vea el mensaje
+        header('Location: index.php?controlador=MisReservas&action=Mostrar');
+        exit();
     }
+
+    // 1) Validación básica de id/servicio/fecha/hora
+    if (!$id || !$servicio || !$fecha || !$hora) {
+        $_SESSION['error_reserva'] = 'Todos los campos son obligatorios';
+        header("Location: index.php?controlador=MisReservas&action=Mostrar");
+        exit();
+    }
+
+    // 2) Intentar actualizar en BD
+    if ($this->dao->actualizarCita($id, $servicio, $fecha, $hora)) {
+        $_SESSION['success_reserva'] = 'Reserva modificada correctamente';
+    } else {
+        $_SESSION['error_reserva'] = 'No se pudo modificar la reserva';
+    }
+    $this->redirectMostrar();
+}
 
     /**
      * Procesa la eliminación (cancelación) de una reserva.
