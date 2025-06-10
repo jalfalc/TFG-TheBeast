@@ -1,5 +1,4 @@
 <?php
-// View/MisReservas_View.php
 // Variables disponibles tras llamar a MisReservas_Controller::Mostrar():
 //   - $reservas: array de reservas formateadas
 //   - $_SESSION['success_reserva'] y $_SESSION['error_reserva'] para mensajes flash

@@ -1,5 +1,4 @@
 <?php
-// Controller/Reservas_Controller.php
 require_once 'Model/DAO/MySqlDAO.php';
 
 class Reservas_Controller {

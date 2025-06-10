@@ -1,4 +1,3 @@
-// public/js/validateLogin.js
 document.addEventListener('DOMContentLoaded', () => {
   const form      = document.getElementById('form-login');
   const inputMail = document.getElementById('username');

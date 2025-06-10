@@ -82,7 +82,7 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <!-- idioma español y lunes como primer día en el calendario -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
-  <!-- nuestro loader de horas -->
+  <!-- script de carga de horas -->
   <script src="js/reservas/cargarHoras.js"></script>
   
 </body>

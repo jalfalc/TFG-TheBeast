@@ -31,7 +31,7 @@
         Reserva tu cita hoy y dale a tu pelo el estilo que se merece
       </p>
       <!-- Botón de reserva -->
-      <a href="reservas.html" class="boton-reservar">
+      <a href="index.php?controlador=Reservas" class="boton-reservar">
         Reservar cita
       </a>
     </div>

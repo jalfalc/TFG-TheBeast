@@ -1,5 +1,3 @@
-// js/reservas/cargarHoras.js
-
 /**
  * Este script gestiona la carga y visualización de las horas disponibles
  * al reservar o editar una cita.

@@ -1,6 +1,3 @@
-<?php
-// Variables disponibles: $reserva = ['id','servicio','fecha','hora','fecha_formateada','hora_corto']
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

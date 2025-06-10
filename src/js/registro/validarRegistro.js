@@ -1,4 +1,3 @@
-// public/js/validateRegister.js
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Referencias al formulario y a los campos de contraseña
   const formulario   = document.getElementById('form-register');  // Formulario de registro
