@@ -15,6 +15,6 @@ if(!empty($_GET['controlador'])){
 if (file_exists("Controller/" . $controlador . "_Controller.php")){
     require_once ("Controller/" . $controlador . "_Controller.php");
 }else{
-    echo "Error, el controlador requerido no existe o no se encuentra";
+    echo "Error, el controlador requerido no existe o no se encuentra" . "<a href='index.php' style='color:red;'>Volver</a>" ;
 }
 ?>

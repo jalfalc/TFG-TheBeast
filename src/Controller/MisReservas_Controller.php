@@ -26,7 +26,7 @@ class MisReservas_Controller {
     /**
      * Acción por defecto: obtiene y formatea las reservas para la vista.
      */
-    public function Mostrar() {
+    public function mostrar() {
         // Recuperar reservas crudas del DAO
         $raw = $this->dao->obtenerReservasUsuario($this->usuarioId);
 
@@ -57,7 +57,7 @@ class MisReservas_Controller {
     /**
      * Muestra el formulario de edición para una reserva específica.
      */
-    public function Modificar() {
+    public function modificar() {
     $id = (int)($_POST['id'] ?? 0);
     if (!$id) {
         $this->redirectMostrar();
@@ -88,7 +88,7 @@ class MisReservas_Controller {
     /**
      * Procesa el envío del formulario de edición de reserva.
      */
-    public function Actualizar() {
+    public function actualizar() {
     $id       = (int)($_POST['id'] ?? 0);
     $servicio = trim($_POST['servicio'] ?? '');
     $fecha    = trim($_POST['fecha'] ?? '');
@@ -107,15 +107,15 @@ class MisReservas_Controller {
     // 0.a) Validar que el servicio que llegó en POST esté en nuestro array
     if (!in_array($servicio, $serviciosValidos, true)) {
         $_SESSION['error_reserva'] = 'Error: el servicio seleccionado no existe.';
-        // volver a Mostrar para que vea el mensaje
-        header('Location: index.php?controlador=MisReservas&action=Mostrar');
+        // volver a mostrar para que vea el mensaje
+        header('Location: index.php?controlador=MisReservas&action=mostrar');
         exit();
     }
 
     // 1) Validación básica de id/servicio/fecha/hora
     if (!$id || !$servicio || !$fecha || !$hora) {
         $_SESSION['error_reserva'] = 'Todos los campos son obligatorios';
-        header("Location: index.php?controlador=MisReservas&action=Mostrar");
+        header("Location: index.php?controlador=MisReservas&action=mostrar");
         exit();
     }
 
@@ -131,7 +131,7 @@ class MisReservas_Controller {
     /**
      * Procesa la eliminación (cancelación) de una reserva.
      */
-    public function Eliminar() {
+    public function eliminar() {
         $id = (int)($_POST['id'] ?? 0);
         if ($id && $this->dao->eliminarCita($id)) {
             $_SESSION['success_reserva'] = 'Reserva cancelada';
@@ -145,15 +145,16 @@ class MisReservas_Controller {
      * Redirige a la acción Mostrar().
      */
     private function redirectMostrar() {
-        header('Location: index.php?controlador=MisReservas&action=Mostrar');
+        header('Location: index.php?controlador=MisReservas&action=mostrar');
         exit();
     }
 }
 
 // Enrutamiento interno del controlador
-$action = $_GET['action'] ?? 'Mostrar';
+$action = $_GET['action'] ?? 'mostrar';
 $ctrl   = new MisReservas_Controller();
 if (!method_exists($ctrl, $action)) {
-    $action = 'Mostrar';
+    $action = 'mostrar';
 }
 $ctrl->{$action}();
+?>

@@ -16,3 +16,4 @@ if (isset($_SESSION["loged"]) && $_SESSION["loged"] === true) {
         exit();
     }
 }
+?>

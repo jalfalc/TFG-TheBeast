@@ -50,3 +50,4 @@ if ($mySqlDAO->registrarUsuario($usuario)) {
     header("Location: index.php?controlador=Login&action=Registro&error_message=" . urlencode($msg));
     exit();
 }
+?>

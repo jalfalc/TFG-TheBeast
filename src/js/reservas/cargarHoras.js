@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3.a) Petición al backend para obtener todas las horas libres en formato JSON
     const respuesta = await fetch(
-      `index.php?controlador=Reservas&action=Horas`
+      `index.php?controlador=Reservas&action=horas`
       + `&fecha=${encodeURIComponent(fechaSeleccionada)}`
       + `&servicio=${encodeURIComponent(servicioElegido)}`
     );

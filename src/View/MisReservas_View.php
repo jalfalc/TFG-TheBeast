@@ -1,5 +1,5 @@
 <?php
-// Variables disponibles tras llamar a MisReservas_Controller::Mostrar():
+// Variables disponibles tras llamar a MisReservas_Controller::mostrar():
 //   - $reservas: array de reservas formateadas
 //   - $_SESSION['success_reserva'] y $_SESSION['error_reserva'] para mensajes flash
 ?>
@@ -56,7 +56,7 @@
                   <!-- Enlace para modificar -->
                   <form
                     method="post"
-                    action="index.php?controlador=MisReservas&action=Modificar"
+                    action="index.php?controlador=MisReservas&action=modificar"
                     class="form-modificar"
                     style="display:inline"
                   >
@@ -67,7 +67,7 @@
                   <!-- Botón para eliminar (confirm en JS) -->
                   <form
                     method="post"
-                    action="index.php?controlador=MisReservas&action=Eliminar"
+                    action="index.php?controlador=MisReservas&action=eliminar"
                     class="form-eliminar"
                   >
                     <input type="hidden" name="id" value="<?= $r['id'] ?>">
