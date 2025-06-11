@@ -30,7 +30,7 @@
         <div class="reserva-mensaje error"><?= htmlspecialchars($error) ?></div>
       <?php endif; ?>
 
-      <form id="form-reserva" action="index.php?controlador=Reservas&action=Confirmar" method="post" novalidate>
+      <form id="form-reserva" action="index.php?controlador=Reservas&action=confirmar" method="post" novalidate>
         <!-- Selector de servicio -->
         <div class="form-group">
           <label for="servicio">Servicio:</label>

@@ -13,7 +13,7 @@ class Reservas_Controller {
   }
 
   // /?controlador=Reservas → muestra la vista
-  public function Mostrar(){
+  public function mostrar(){
     $mensaje = $_SESSION['success_reserva'] ?? '';
     $error   = $_SESSION['error_reserva']   ?? '';
     unset($_SESSION['success_reserva'], $_SESSION['error_reserva']);
@@ -21,7 +21,7 @@ class Reservas_Controller {
   }
 
   // /?action=Horas devuelve JSON con huecos libres
-  public function Horas(){
+  public function horas(){
     header('Content-Type: application/json');
     $fecha    = $_GET['fecha']    ?? '';
     $servicio = $_GET['servicio'] ?? '';
@@ -58,7 +58,7 @@ class Reservas_Controller {
   }
 
   // /?action=Confirmar procesa el POST
-  public function Confirmar(){
+  public function confirmar(){
     $uid       = $_SESSION['usuario_id'];
     $servicio  = $_POST['servicio'] ?? '';
     $fecha     = $_POST['fecha']    ?? '';
@@ -77,14 +77,14 @@ class Reservas_Controller {
     // 1) Validar que el servicio enviado esté en la lista de servicios permitidos
     if (!in_array($servicio, $serviciosValidos, true)) {
       $_SESSION['error_reserva'] = 'Error: el servicio seleccionado no existe.';
-      header('Location: index.php?controlador=Reservas&action=Mostrar');
+      header('Location: index.php?controlador=Reservas&action=mostrar');
       exit();
     }
 
     // 2) Validar que vengan todos los datos
     if (!$servicio || !$fecha || !$hora) {
       $_SESSION['error_reserva'] = 'Falta elegir servicio, fecha u hora.';
-      header('Location: index.php?controlador=Reservas&action=Mostrar');
+      header('Location: index.php?controlador=Reservas&action=mostrar');
       exit();
     }
 
@@ -105,13 +105,14 @@ class Reservas_Controller {
     }
 
     // 4) Redirigir de nuevo al formulario
-    header('Location: index.php?controlador=Reservas&action=Mostrar');
+    header('Location: index.php?controlador=Reservas&action=mostrar');
     exit();
   }
 }
 
 // router interno
-$accion = $_GET['action'] ?? 'Mostrar';
+$accion = $_GET['action'] ?? 'mostrar';
 $ctrl   = new Reservas_Controller();
-if (!method_exists($ctrl, $accion)) $accion = 'Mostrar';
+if (!method_exists($ctrl, $accion)) $accion = 'mostrar';
 $ctrl->{$accion}();
+?>

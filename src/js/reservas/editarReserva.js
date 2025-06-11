@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 5.d) Hacer la petición AJAX al controlador Reservas→Horas
+    // 5.d) Hacer la petición AJAX al controlador Reservas→horas
     const respuesta = await fetch(
-      `index.php?controlador=Reservas&action=Horas` +
+      `index.php?controlador=Reservas&action=horas` +
       `&fecha=${encodeURIComponent(fechaSel)}` +
       `&servicio=${encodeURIComponent(servicio)}`
     );
